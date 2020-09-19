@@ -1,0 +1,15 @@
+1. Defining Variables
+2. Using `console.log` to print output to console and printing multiple variables 
+3. Converting variables to types
+4. Using `typeof` keyword to print variable types
+5. String Concatanation
+6. Type casting
+    - Number to String
+    - String to number - `parseInt` and `parseFloat`
+    - Array to string
+7. Array operations and basic functions
+8. Objects, complex objects, how to access, defining functions inside objects
+
+JavaScript Official Documentation: 
+
+https://developer.mozilla.org/en-US/

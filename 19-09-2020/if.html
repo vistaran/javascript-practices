@@ -1,0 +1,62 @@
+<script>
+
+    var cgpa = 8.9;
+    var student_1_spi = 8.2;
+    var student_2_spi = 8.2;
+
+    // Operators and "&&" usage
+    function getStudentClass(cgpa) {
+        if(cgpa >= 6 && cgpa < 7.5 ) {
+            console.log("First Class.");
+        }
+    
+        if(cgpa < 6 && cgpa >= 4 ) {
+            console.log("Second Class.");
+        }
+    
+        if(cgpa < 4) {
+            console.log("Failed.");
+        }
+    
+        if(cgpa > 7.5) {
+            console.log("Distinction.");
+        }
+    }
+    getStudentClass(cgpa);
+
+    // Comparison points
+    function checkSpi() {
+        if(student_2_spi === parseFloat(student_1_spi)) {
+            console.log("Fine.");
+        } else {
+            console.log("Not Fine.");
+        }
+    }
+    checkSpi(cgpa);
+
+    // OR condition example
+    var colorsILike = ['red', 'blue']
+    
+    function checkIfILikeTheColor(color) {
+        if(color == colorsILike[0] || color == colorsILike[1]) {
+            console.log("Fine.");
+        } else {
+            console.log("Not Fine.");
+        }
+    }
+
+    checkIfILikeTheColor('blue');
+
+    // Use indexOf function to check if an item is inside an array or not
+    function checkIfILikeTheColor_2(color) {
+        if(colorsILike.indexOf(color) === -1) {
+            console.log("Not Fine.");
+        } else {
+            console.log("Fine.", colorsILike.indexOf(color));
+        }
+    }
+
+    checkIfILikeTheColor_2('blue');
+
+
+</script>

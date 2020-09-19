@@ -1,0 +1,37 @@
+<script>
+
+    var hobbies = ['Reading', 'Learning', 'Cricket', 'Games']; // 4 - 3
+    var jay_hobbies = ['Reading', 'Learning', 'Cricket', 'Games', 'Meditation']; // 5 - 4
+
+    // Get last element
+    function getLastElement(arr) {
+        return arr[arr.length - 1];
+    }
+
+    console.log(getLastElement(hobbies));
+    console.log(getLastElement(jay_hobbies));
+
+    // Adding an element at the end of an array
+    hobbies.push('Yoga');
+
+    console.log("Piyush Hobbies > ", hobbies);
+
+    // Removing an element from end of an array
+    jay_hobbies.pop();
+
+    console.log("Jay Hobbies > ", jay_hobbies);
+
+    // Adding an element at start of an array
+    hobbies.unshift("Movies");
+
+    console.log("Piyush Hobbies > ", hobbies);
+
+    // Removing an element from start of an array
+    jay_hobbies.shift();
+
+    console.log("Jay Hobbies > ", jay_hobbies);
+
+    // indexOf - returns and index of an elemnt in array where it is located
+    console.log(jay_hobbies.indexOf('wsgvws'));
+
+</script>
