@@ -1,0 +1,82 @@
+<script>
+    
+    function getCircleArea(r) {
+
+        return 3.14 * r * r;
+    }
+    
+    function getSquareArea(a) {
+
+        return  a * a;
+    }
+
+    function getRectangleArea(l,w) {
+
+        return  l * w;
+    }
+
+    function getParallelogramArea(b,h) {
+
+        return  b * h;
+    }
+
+    function getTriangleArea(b,h) {
+
+        return  1/2 * b * h;
+    }
+
+    function getTrapeziumArea(a,b,h) {
+
+        return  1 / 2 * (a + b) * h;
+    }
+
+    function getEllipseArea(a,b) {
+
+        return  3.14 * a * b;
+    }
+
+    function getCubeArea(a) {
+
+        return  6 * a * a;
+    }
+
+    function getRectangularPrismArea(l,w,h) {
+
+        return  2 * (w * l + h * l + h * w);
+    }
+
+    function getCylinderArea(r,h) {
+
+        return  2 * 3.14 * r * (r + h);
+    }
+
+    function getConeArea(r,l) {
+
+        return  3.14 * r * (r + l);
+    }
+
+    function getSphereArea(r) {
+
+        return  4 * 3.14 * r * r ;
+    }
+
+    function getHemisphereArea(r) {
+
+        return  3 * 3.14 * r * r;
+    }
+
+    console.log(getCircleArea(10))
+    console.log(getSquareArea(10))
+    console.log(getRectangleArea(10,10))
+    console.log(getParallelogramArea(10,10))
+    console.log(getTriangleArea(10,10))
+    console.log(getTrapeziumArea(10,10,10))
+    console.log(getEllipseArea(10,10))
+    console.log(getCubeArea(10))
+    console.log(getRectangularPrismArea(10,10,10))
+    console.log(getCylinderArea(10,10))
+    console.log(getConeArea(10,10))
+    console.log(getSphereArea(10,10))
+    console.log(getHemisphereArea(10))
+
+</script>
