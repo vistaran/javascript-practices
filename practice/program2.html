@@ -1,0 +1,16 @@
+<script>
+
+    function leapYear(year) {
+
+        if (((year % 4) && (year % 100 != 0)) || (year % 400 == 0)) {
+
+            console.log("Year is leap year");
+        }
+        else {
+            console.log("Year is not leap year");
+        }
+    }
+
+    console.log(leapYear(400));
+    
+</script>
