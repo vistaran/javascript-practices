@@ -1,0 +1,27 @@
+<script>
+
+    function positive_Negative(num, num1) {
+
+        if (num > 0 && num1 < 0) {
+
+            console.log("given number is " + num + " is positive");
+            console.log("given number is " + num1 + " is Negative");
+        }
+        else if (num < 0 && num1 > 0) {
+
+            console.log("given number is " + num + " is negative");
+            console.log("given number is " + num1 + " is positive");
+        }
+        else if (num > 0 && num1 > 0) {
+            console.log("given number is " + num + " is positive");
+            console.log("given number is " + num1 + " is positive");;
+        }
+        else if (num < 0 && num1 < 0) {
+            console.log("given number is " + num + " is negative");
+            console.log("given number is " + num1 + " is negative");
+        }
+    }
+
+    console.log(positive_Negative(10, 10));
+
+</script>
