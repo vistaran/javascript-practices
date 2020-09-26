@@ -4,3 +4,4 @@
 5. Simple and Complex switch case
 6. While loop
 7. Behavior of return, break and continue in control flow statements
+8. String Manipulations and Regular Expressions
