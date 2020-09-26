@@ -9,6 +9,8 @@
     - Array to string
 7. Array operations and basic functions
 8. Objects, complex objects, how to access, defining functions inside objects
+9. Functions and different ways to create it
+10. If condition examples and importance of strict type checking, using Array.indexOf to find element in array
 
 JavaScript Official Documentation: 
 

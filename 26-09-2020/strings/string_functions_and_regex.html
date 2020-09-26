@@ -1,0 +1,45 @@
+<script>
+
+var name = "piyush";
+
+console.log(name.charAt(1)); // Method 1 Extracting character from a position
+console.log(name[1]); // Method 2 Extracting character from a position
+
+console.log(name.toUpperCase()); // to convert to uppercase
+
+var str = name.charAt(0).toUpperCase() + name.slice(1); // Convert first character to uppercase of a string
+console.log(str);
+
+console.log("Slicing 1 to 3 index > ", name.slice(1, 4)); // Slice usage to extract portion of a string using indexes
+
+var surname = "Kachhadiya";
+
+console.log(name.concat(" ", surname, " is on session.")); // Another way to concatenate
+
+var sentence = "The quick brown fox jumps over the another lazy Fox.";
+
+console.log(sentence.includes('fox') ? 'Yes fox is there!' : 'No. its not there.');  // to search a word or part of a word in a string
+
+console.log(sentence.indexOf('dog')); // to find a position of a character or a word in string
+
+console.log("Is sentence ends with brown? ", sentence.endsWith('brown', 15)); // to check if string ends with particular word or a character
+
+console.log(sentence.match('q')); // Another way of matching a word
+
+console.log(sentence.replace('fox', 'lion')); // to replace first match only
+
+// replace all occurences
+console.log(sentence.replace(/fox/ig, 'lion')); // to replace all matches with pattern - Regular Expressions
+console.log(sentence.replaceAll('fox', 'lion')); // to replace first match only
+
+// Regular expressions example
+var sentence = "The quick brown 1121                       fox212 jumps over234 the$$$$ another^^^ lazy Fox.";
+
+// First group for removing numbers, second for removing $ and 3rd for ^. Removed more than 1 occurences of spaces.
+// Mathod Chaining
+console.log(sentence.replace(/([0-9])|(\$)|(\^)/g, '').replace(/(\s){1,}/g, ' '));
+console.log(sentence.replace(/([a-zA-Z])/g, '').replace(/(\s){1,}/g, ' ').trim());
+
+var paragraph = "Hi this is Piyush and my phone number is 5566778899, Hi this is Jay my phone is 4455667788.";
+console.log(paragraph.match(/[0-9]{10}/g)); // matching using Regex
+</script>

@@ -1,0 +1,15 @@
+<script>
+
+var marks = [75, 15, 65, 40];
+var numberOfpassedStudents = 0;
+
+for (var index = marks.length - 1; index >= 0; index--) {
+    if(marks[index] < 35) {
+        continue;
+    }
+    numberOfpassedStudents++;
+}
+
+console.log("Number of passed students = ", numberOfpassedStudents);
+
+</script>

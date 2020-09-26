@@ -1,0 +1,18 @@
+<script>
+
+var marks = [75, 15, 65, 40];
+var hasSomeoneFailed = false; // assume by default that No ONE has failed
+
+for (let index = marks.length - 1; index >= 0; index--) {
+    // if someone has marks less than 35 then consider that as failed and break out
+    if(marks[index] < 35) {
+        hasSomeoneFailed = true; // mark as failed
+        break;
+    }
+}
+
+if(hasSomeoneFailed) {
+    console.log("One of the students has failed.");
+}
+
+</script>

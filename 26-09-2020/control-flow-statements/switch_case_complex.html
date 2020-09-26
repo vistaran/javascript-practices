@@ -1,0 +1,32 @@
+<script>
+
+var marks = [
+    {name: 'Piyush', marks: 98}, 
+    {name: 'Jay', marks: 15},
+    {name: 'Arpit', marks: 55},
+    {name: 'Niraj', marks: 70}
+];
+
+marks.forEach((student) => {
+
+    switch (true) {
+        case (student.marks > 75):
+            console.log(student.name + " has distinction." );
+            break;
+
+        case (student.marks >= 60 && student.marks < 75):
+            console.log(student.name + " has first class." );
+            break;
+    
+        case (student.marks >= 35 && student.marks < 60):
+            console.log(student.name + " has second class." );
+            break;
+
+        default:
+            console.log(student.name + " has failed." );
+            break;
+    }
+
+});
+
+</script>

@@ -1,0 +1,18 @@
+<script>
+
+var array = [
+    {name: 'Piyush'}, 
+    {name: 'Jay'},
+    {name: 'Arpit'},
+    {name: 'Niraj'}
+];
+var surnames = ['Kachhadiya', 'Shah', 'Pandya', 'Kachhadiya'];
+
+array.forEach((currentElement, index) => {
+    currentElement.name = currentElement.name + " " + surnames[index];
+    return; // This does not return or break the loop, also continue doesn't work in foreach
+});
+
+console.log(array);
+
+</script>
