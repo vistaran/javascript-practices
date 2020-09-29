@@ -1,0 +1,33 @@
+<script>
+/*Count how many Birthday candles are tallest.
+
+Example
+candles = ["4inch","4inch","1inch","3inch"]
+
+The maximum height candles are 4 units high. There are 2  of them, so return 2.*/
+    function candle(candles) {
+
+        var max = 0;
+        var current = 0;
+        var currentelement = 0;
+        
+        for (let index = 0; index < candles.length; index++) {
+            currentelement = candles[index];
+            
+            if (candles[index] > max) {
+                max = candles[index];
+                continue;
+            }
+        }
+        for (let index = 0; index < candles.length; index++) {
+            if (candles[index] == max) {
+                current++;
+            }
+        }
+
+        console.log(current);
+    }
+    var candles = [14, 2, 3, 14]
+    candle(candles)
+
+</script>
