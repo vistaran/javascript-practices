@@ -1,0 +1,21 @@
+<script>
+    /* Create a JavaScript function to hide email addresses to protect from unauthorized user.
+      console.log(protect_email("robin_shaw@example.com"));
+      "robin...@example.com"*/
+  
+    function truncate_string() {
+  
+    var str1="robin_singh@example.com"
+    var avg, splitted, part1, part2;
+    splitted = str1.split("@");
+    part1 = splitted[0];
+    avg = part1.length / 2;
+    part1 = part1.substring(0, (part1.length - avg));
+    part2 = splitted[1];
+    return part1 + "...@" + part2;
+
+    }
+
+    console.log(truncate_string());   
+  
+  </script>
