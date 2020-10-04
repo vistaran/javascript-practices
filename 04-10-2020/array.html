@@ -1,0 +1,138 @@
+<script>
+
+    // splice VS slice
+    // SPLICE EXAMPLE
+    console.log("-------- Extraction OR Removing elements from an array ------");
+    console.log('\n');
+    var fruits = ['Apple', 'Banana', 'Kiwi', 'Avocado', 'Strawberry', 'Mango', 'Watermelon'];
+    console.log("Before extraction >> ", fruits);
+    var extracted = fruits.splice(1, 2);
+    console.log("Extracted >> ", extracted);
+    console.log("After extraction >> ", fruits);
+
+    console.log('\n');
+    console.log("-------- Insert or Replace an element inside an array using splice ------");
+    console.log('\n');
+    var fruits2 = ['Apple', 'Banana', 'Kiwi', 'Avocado', 'Strawberry', 'Mango', 'Watermelon'];
+    console.log("Fruits 2", fruits2);
+    fruits2.splice(4, 0, 'Grapes'); // 0 in the second arg means insertion
+    console.log("Insertion example >> ", fruits2);
+    fruits2.splice(5, 1, 'Chiku'); // 1 in the second arg means replacement
+    console.log("Replacement example >> ", fruits2);
+    
+    // SLICE EXAMPLE
+    console.log('\n');
+    console.log("-------- Slice Example ------");
+    console.log('\n');
+    var fruits3 = ['Apple', 'Banana', 'Kiwi', 'Avocado', 'Strawberry', 'Mango', 'Watermelon'];
+    console.log(fruits3.slice(2, 4));
+
+    // CONCAT EXAMPLE
+    console.log('\n');
+    console.log("-------- CONCAT Example ------");
+    console.log('\n');
+    var fruits4 = ['Apple', 'Banana', 'Kiwi', 'Avocado'];
+    var fruits5 = ['Strawberry', 'Mango', 'Watermelon'];
+    var fruits6 = fruits4.concat(fruits5, ['Dragonfruit', 'Dadam']);
+    console.log(fruits6);
+
+    // copyWithin
+    console.log('\n');
+    console.log("-------- COPYWITHIN Example ------");
+    console.log('\n');
+    var array1 = ['Apple', 'Banana', 'Kiwi', 'Avocado', 'Strawberry', 'Mango', 'Watermelon'];
+    console.log(array1);
+    array1.copyWithin(1, 3);
+    console.log("COPY WITHIN EXAMPLE 1 > ", array1);
+
+    // filter - finds all elements that matches the criteria
+    console.log('\n');
+    console.log("-------- Filter Example ------");
+    console.log('\n');
+    var studentResults = [{
+        marks: 45
+    }, {
+        marks: 58
+    }, {
+        marks: 75
+    }];
+
+    var newStudentsAfterFiltering = studentResults.filter(obj => {
+        return obj.marks > 50;
+    });
+    console.log(newStudentsAfterFiltering);
+
+    var array1 = ['Apple', 'Banana', 'Kiwi', 'Avocado', 'Strawberry', 'Mango', 'Watermelon'];
+    console.log(array1.filter(fruit => fruit.length >= 6));
+
+    // find - only finds first element that match the criteria
+    console.log('\n');
+    console.log("-------- FIND Example ------");
+    console.log('\n');
+    var arr2 = studentResults.find(obj => {
+        return obj.marks > 50;
+    });
+
+    console.log(arr2);
+
+    // findIndex - add code here
+
+    // includes - Used to check if an element exists in an array or not
+    console.log('\n');
+    console.log("-------- INCLUDES Example ------");
+    console.log('\n');
+    var array3 = ['Apple', 'Banana', 'Kiwi', 'Avocado', 'Strawberry', 'Mango', 'Watermelon'];
+    console.log(array3.includes('Kiwi'));
+
+    // join and split - Join or split all array elements
+    console.log('\n');
+    console.log("-------- JOIN / SPLIT Example ------");
+    console.log('\n');
+    var array3 = ['Apple', 'Banana', 'Kiwi', 'Avocado', 'Strawberry', 'Mango', 'Watermelon'];
+    var arr4 = array3.join(' | ');
+    console.log("JOIN > ", arr4);
+    var arr5 = arr4.split(' | ');
+    console.log("SPLIT > ", arr5);
+
+    // keys example
+    console.log('\n');
+    console.log("-------- keys Example ------");
+    console.log('\n');
+    var keysIt = array3.keys();
+    for (var k of keysIt) {
+        console.log(k);
+    }
+
+    // lastIndexOf
+    console.log('\n');
+    console.log("-------- lastIndexOf Example ------");
+    console.log('\n');
+    var array3 = ['Apple', 'Banana', 'Kiwi', 'Apple', 'Strawberry', 'Mango', 'Watermelon'];
+    console.log(array3.lastIndexOf('Banana', 2));
+
+    // map - Creating a new array by modifying existing data
+    // add example for student marks - pass them (make it 35) if marks are between 30 to 34 (including)
+    console.log('\n');
+    console.log("-------- map Example ------");
+    console.log('\n');
+    var nums = [3, 7, 23, 45];
+    var numsResult = nums.map(x => x * 2);
+    console.log("MAP result >> ", numsResult);
+
+    // sort
+    console.log('\n');
+    console.log("-------- sort Example ------");
+    console.log('\n');
+    var studentResults = [{
+        marks: 58
+    }, {
+        marks: 75
+    }, {
+        marks: 40
+    }];
+
+    console.log(studentResults.sort((a, b) => {
+        return a.marks - b.marks;
+    }));
+
+</script>
