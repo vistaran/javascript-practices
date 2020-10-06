@@ -38,7 +38,7 @@ var sentence = "The quick brown 1121                       fox212 jumps over234 
 // First group for removing numbers, second for removing $ and 3rd for ^. Removed more than 1 occurences of spaces.
 // Mathod Chaining
 console.log(sentence.replace(/([0-9])|(\$)|(\^)/g, '').replace(/(\s){1,}/g, ' '));
-console.log(sentence.replace(/([a-zA-Z])/g, '').replace(/(\s){1,}/g, ' ').trim());
+console.log(sentence.replace(/([a-zA-Z])/g, '').replace(/(\s){1,}/g, ' '));
 
 var paragraph = "Hi this is Piyush and my phone number is 5566778899, Hi this is Jay my phone is 4455667788.";
 console.log(paragraph.match(/[0-9]{10}/g)); // matching using Regex
