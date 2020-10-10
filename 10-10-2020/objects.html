@@ -1,0 +1,57 @@
+<script>
+
+    var obj = {};
+    var obj2 = new Object();
+    obj2.name = "Piyush";
+    obj2.getMorningRoutine = () => {
+        return ['item1', 'item2'];
+    };
+
+    var fn = obj2['getMorningRoutine']; 
+
+    console.log( fn() );
+
+    var str = 'name';
+    console.log(obj2['']);
+
+    // Tesla car
+    var obj3 = {
+        company: 'Tesla',
+        model: 'Model X',
+        year: 2018
+    };
+
+    // print keys and values without knowing whats inside
+    for(var key in obj3) {
+        console.log(key, " = ", obj3[key]);
+    }
+
+    // hasOwnProperty
+    console.log(obj3.hasOwnProperty('model'));
+
+    // Object.keys(o)
+    console.log(Object.keys(obj3));
+
+    // Object.getOwnPropertyNames
+    console.log(Object.getOwnPropertyNames(obj3));
+
+    var a = {};
+
+    Object.defineProperties(a, {
+        one: {enumerable: true, value: 3434},
+        two: {enumerable: false, value: 23432}
+    });
+
+    // Object.keys(o)
+    console.log(Object.keys(a));
+
+    // Object.getOwnPropertyNames
+    console.log(Object.getOwnPropertyNames(a));
+
+    // Comparison example
+    var fruit  = {name: 'Apple'};
+    var fruitApple = fruit;
+
+    console.log(fruit === fruitApple);
+
+</script>

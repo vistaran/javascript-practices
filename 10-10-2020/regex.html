@@ -1,0 +1,66 @@
+<script>
+    var alphabeticPattern = '[a-zA-Z]';
+    var numeric = '[0-9]';
+
+    // 2 ways to create regular expressions
+    var re = /[a-zA-Z0-9]/;
+    var re2 = new RegExp(numeric);
+
+    // Assertion example
+
+    var sentence = "The quick brown fox";
+
+    // \w - matches [A-Za-z0-9_]
+    // where + and $ are quantifiers
+    var regx = /\w+$/g;
+    console.log(sentence.match(regx));
+
+    // Simple example:
+    var sentence2 = "The quick fox is brown";
+    console.log(sentence2.match(/(is)|(brown)/ig));
+
+    // Little more complicated
+    // usage of exec on regex
+    var str = 'cdbbdbsbz';
+    var regx = /d(b+)d/g;
+    console.log(regx.exec(str));
+    var regx2 = new RegExp('d(b+)d', 'g');
+    console.log(regx2.exec(str));
+
+    // multiline matching
+    var sentence3 = "The quick dog is brown\njumped over lazy fox";
+    var regx2 = /^jumped/m;
+    console.log(regx2.test(sentence3));
+
+    // Email validation using regex
+    // allowed characters before @ - A-Za-z0-9._+
+    // allowed characters in domain - A-Za-z0-9.-
+    var email = "pi(&yush@gmail.com";
+    email = email.replace(/([^@A-Za-z0-9._-])/g, '');
+    console.log(email);
+    var emailReg = /[A-Za-z0-9._]+@[A-Za-z0-9.-]+.[A-Za-z]+/;
+    console.log("Email validation using regex >> ", emailReg.test(email));
+
+    // IP Address validation
+    var ip = '192.168.1.1';
+    ip2 = '2.34.21.45';
+    ip3 = '256.25.36.101';
+    var regx3 = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/; // 0-255
+
+    console.log(ip, " is valid ip =", regx3.test(ip));
+    console.log(ip2, " is valid ip =", regx3.test(ip2));
+    console.log(ip3, " is valid ip =", regx3.test(ip3));
+
+    // Validating using foreach
+    var flag = true;
+    var ip4Split = ip3.split('.');
+    console.log(ip4Split);
+    ip4Split.forEach(e => {
+        if(e > 255) {
+            flag = false;
+        }
+    });
+
+    console.log("Array way ", ip3, " ip is valid ", flag);
+    
+</script>
