@@ -1,0 +1,44 @@
+<script>
+
+    /** Find most occurisng character */
+    var randomArr = [7, 'b', 'c', 'b', 2, 5, 'c', 3, 'c', 2, 4, 9, 3];
+
+    var unique = [];
+    var uniqueObjects = [];
+
+    for (let i = 0; i < randomArr.length; i++) {
+        if(unique.indexOf(randomArr[i]) === -1) {
+            unique.push(randomArr[i]);
+            var tmp = {
+                element: randomArr[i],
+                count: 0
+            };
+            uniqueObjects.push(tmp);
+        }
+    }
+
+    console.log(uniqueObjects);
+
+    for (let i = 0; i < uniqueObjects.length; i++) {
+        for (let j = 0; j < randomArr.length; j++) {
+            if(uniqueObjects[i].element === randomArr[j]) {
+                uniqueObjects[i].count++;
+            }
+        }
+    }
+
+    var max = 0;
+    var maxIndex = 0;
+
+    for (let i = 0; i < uniqueObjects.length; i++) {
+        if(uniqueObjects[i].count >= max) {
+            max = uniqueObjects[i].count;
+            maxIndex = i;
+        }
+    }
+
+    console.log(max);
+    
+    console.log("Max element is > ", uniqueObjects[maxIndex].element);
+
+</script>
