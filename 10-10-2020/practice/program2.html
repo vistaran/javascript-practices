@@ -1,0 +1,85 @@
+<script>
+
+/*Write a function to replace <name> with name passed as arg in function which should return full sentence:
+
+"My name is <name>"; -----------> "My name is Piyush"*/
+    function replacename(name) {
+        var str= '"my name is <name>"';
+        var str1 = str.replace(/<name>/i,name)
+        console.log(str1);      
+    }
+    replacename("piyush")
+
+/*Write a function to check if passed number as arg is divisible by 5 or not. It should return true or false accordingly.*/
+    function testage(age) {
+    var flag=false
+    
+    if (age % 5 == 0) {
+        flag = true        
+    }
+    console.log("your age is divided by 5 or not ? >>"+flag);
+    }
+    testage(555)
+
+/*Write a function that converts passed string to integer.*/
+    function converttointeger(str) {
+        var str1 = parseInt(str);
+        console.log(str1);        
+    }
+
+    converttointeger("12345")
+
+/*Can Bartender Serve Drink or not?
+
+A bartender is writing a simple program to determine whether he should serve drinks to someone. He only serves drinks to people 18 and older and + he's not on break.
+
+Given the person's age fn(age), and whether break time is active fn(age, isOnBreak), create a function which returns whether he should serve drinks or not.
+
+Example:
+
+shouldServeDrinks(17, true) ➞ false
+shouldServeDrinks(19, false) ➞ true
+shouldServeDrinks(30, true) ➞ false*/
+    function bartenderServe(age, isOnBreak) {
+        
+        var str ;
+
+        if (isOnBreak > 1 && isOnBreak < 2 ) {
+            str = true
+        }else {
+            str = false
+        }
+
+        if (age >= 18 && str == false) {
+            console.log("true");
+        }else if (age >= 18 && str == true) {
+            console.log("false");
+        }else if (age < 18 && str == true) {
+            console.log("false");
+        }else {
+            console.log("that People is not 18+");
+        }
+    }
+    bartenderServe(30,6)
+    
+/*Thief among us:
+
+Create a function that calculates the chance of being an thief. The formula for the chances of being an thief is 100 × (i / p) where i is the thief count and p is the player count. Make sure to round the value to the nearest integer and return the value as a percentage.
+
+Example:
+
+imposterFormula(1, 10) ➞ "10%"
+imposterFormula(2, 5) ➞ "40%"
+imposterFormula(1, 8) ➞ "13%"*/
+    function imposterFormula(i,p) { 
+    
+    var str = 100 * (i/p)
+    //console.log(str);
+    var str2 = Math.round(str)
+    //console.log(str2);
+    var str3 = str2 *100 / 100 
+    console.log(str3);        
+    }
+    imposterFormula(1, 7)
+
+</script>
