@@ -6,18 +6,21 @@
     oddOrEven("apples") ➞ true
     oddOrEven("pears") ➞ false
     oddOrEven("cherry") ➞ true */
-    
-    flag = false
-    function findoddeven(str) {
 
+    
+    function findOddEven(str) {
+
+        flag = false
         var str2 = str.toString().length
 
-        if (str2 % 2 == 0) {
-            flag = true
-        }
+            if (str2 % 2 == 0) {
 
+                flag = true
+       
+            }
+            
         console.log("given number is even or odd ? >> " + flag);
     }
-    findoddeven("apple")
+    findOddEven("apple")
 
 </script>
