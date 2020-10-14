@@ -5,16 +5,12 @@
 
     function capitalize_Words() {
 
-        var str1 = "js string exercises."
-        var str2 = str1.split(' ', 3)
-        console.log(str2);
-        for (let index = 0; index < str2.length; index++) {
-            var s3 = str2[index].toUpperCase();
-            console.log(s3);
-        }
-     
-
+        var str1 = "js string exercises."        
+        for (let i = 0; i < str1.length; i++) {
+             console.log(str1[i] = str1[i][0].toUpperCase() + str1[i].substr(1));
+            }
     }
+
     capitalize_Words()
 
 </script>
