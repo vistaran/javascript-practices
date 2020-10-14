@@ -6,7 +6,7 @@
     newWord("apple") ➞ "pple"
     newWord("cherry") ➞ "herry"
     newWord("plum") ➞ "lum" */
-    
+
     function newWord(str) {
 
         var str1 = []
@@ -15,13 +15,16 @@
         for (let i = 0; i < str.length; i++) {
 
             if (str[i] == str2) {
+
                 continue;
            
-            } else {
+            } 
+            else {
+
                 str1.push(str[i])
             }
         }
-
+        
         console.log(str1.join(''));
     }
     newWord("cherry")
