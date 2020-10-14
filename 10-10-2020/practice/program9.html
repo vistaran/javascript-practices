@@ -1,0 +1,25 @@
+<script>
+    /* Kinetic energy can be calculated with the formula in image:
+    
+    Where 
+    
+    m is mass in kg
+    v is velocity in m/s
+    KE is kinetic energy in J
+    
+    Return the Kinetic Energy in Joules, given the mass and velocity. For the purposes of this challenge, round answers to the nearest integer.
+    
+    kineticEnergy(60, 3) ➞ 270
+    kineticEnergy(45, 10) ➞ 2250
+    kineticEnergy(63.5, 7.35) ➞ 1715  */
+
+    function kineticEnergy(m, v) {
+
+        var num3 = 1 / 2 * m * (v * v)
+        
+        console.log(Math.round(num3));
+    }
+    
+    kineticEnergy(63.5, 7.35)
+
+</script>
