@@ -1,0 +1,23 @@
+<script>
+
+    /* Given a string, return true if its length is even or false if the length is odd.
+    
+    
+    oddOrEven("apples") ➞ true
+    oddOrEven("pears") ➞ false
+    oddOrEven("cherry") ➞ true */
+    
+    flag = false
+    function findoddeven(str) {
+
+        var str2 = str.toString().length
+
+        if (str2 % 2 == 0) {
+            flag = true
+        }
+
+        console.log("given number is even or odd ? >> " + flag);
+    }
+    findoddeven("apple")
+
+</script>
