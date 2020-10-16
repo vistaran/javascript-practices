@@ -1,0 +1,27 @@
+<script>
+
+    /* Creating IDs (Identification Strings)
+
+    Many IDS (for emails or Google ID) are created using the person's name.
+
+    Create a function that will return a four-character ID using the person's first name and last name. The first character will be the first letter of the first name but in lowercase. The next three characters will be the first three characters of the last name, but the first letter will be capitalized and the other two will be in lower case.
+
+    createID("mary", "lamb") ➞ "mLam"
+    createID("John", "SMITH") ➞ "jSmi"
+    createID("mary", "smith") ➞ "mSmi" */
+
+    function createID(firstname,lastname) {
+        
+        var str = firstname.toLowerCase().charAt(0)
+
+        var last = lastname.substr(0,3)
+        
+        for (let i = 0; i < last.length ; i++) {
+        
+            var str2 = last.toUpperCase().charAt(0) + last.slice(1).toLowerCase()
+        
+        }
+        console.log(str.concat(str2));
+    }
+    createID("mary", "smith")
+</script>
