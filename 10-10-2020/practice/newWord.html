@@ -1,0 +1,27 @@
+<script>
+
+    /* Create a function that takes a word and returns the new word without including the first character.
+
+    newWord("apple") ➞ "pple"
+    newWord("cherry") ➞ "herry"
+    newWord("plum") ➞ "lum" */
+
+    function newWord(str) {
+
+        var str2 = []
+        var str1 = str.charAt(str)
+        for (let i = 0; i < str.length; i++) {
+
+            if (str[i] == str1) {
+
+                continue;
+           
+            } else {
+
+                str2.push(str[i])
+            }
+        }
+        console.log(str2.join(''));
+    }
+    newWord("plum")
+</script>
