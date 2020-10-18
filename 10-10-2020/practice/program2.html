@@ -1,0 +1,25 @@
+<script>
+
+    /* Thief among us:
+
+    Create a function that calculates the chance of being an thief. The formula for the chances of being an thief is 100 × (i / p) where i is the thief count and p is the player count. Make sure to round the value to the nearest integer and return the value as a percentage.
+
+    Example:
+
+    imposterFormula(1, 10) ➞ "10%"
+    imposterFormula(2, 5) ➞ "40%"
+    imposterFormula(1, 8) ➞ "13%" */
+
+    function imposterFsormula(i,p) { 
+    
+        var str = 100 * (i/p)
+        //console.log(str);
+        var str2 = Math.round(str)
+        //console.log(str2);
+        var str3 = str2 *100 / 100 
+        console.log(str3);        
+    }
+
+    imposterFormula(1, 7)
+
+</script>

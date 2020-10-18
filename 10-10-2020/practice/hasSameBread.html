@@ -1,0 +1,56 @@
+<script>
+
+    /* Sandwich Breads
+
+    Given two arrays, which represent two sandwiches, return whether both sandwiches use the same type of bread. The bread will always be found at the start and end of the array.
+
+    hasSameBread(
+        ["white bread", "lettuce", "white bread"],
+        ["white bread", "tomato", "white bread"]
+        ) ➞ true
+
+    hasSameBread(
+        ["brown bread", "chicken", "brown bread"],
+        ["white bread", "chicken", "white bread"]
+        ) ➞ false
+
+    hasSameBread(
+        ["toast", "cheese", "toast"],
+        ["brown bread", "cheese", "toast"]
+        ) ➞ false */
+
+    function hasSameBread(arr, arr1) {
+        
+        var arr3 = []
+        var arr2 = [];
+        
+        for (let i = 0; i < arr.length; i++) {
+            if (arr2.indexOf(arr[i]) === -1) {
+                arr2.push(arr[i])
+                var temp = {
+                    element: arr[i],
+                    count: 0
+                };
+                arr3.push(temp)
+            }
+        }
+
+        for (let i = 0; i < arr3.length; i++) {
+            for (let j = 0; j < arr1.length; j++) {
+                if (arr3[i].element == arr1[j]) {
+                    arr3[i].count++;
+                }
+            }
+        }
+        
+        var max = 1
+        var flag = false
+        for (let k = 0; k < arr3.length; k++) {
+            if (arr3[k].count > max) {
+                flag = true;
+            }
+        }
+        console.log(flag);
+    }
+    hasSameBread(["white bread", "lettuce", "white bread"], ["white bread", "tomato", "white bread"])
+</script>

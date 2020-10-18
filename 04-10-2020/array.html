@@ -77,6 +77,11 @@
 
     // findIndex - add code here
 
+    var arr2 = studentResults.findIndex(obj => {
+        return obj.marks > 50;
+    });
+    console.log(arr2);
+
     // includes - Used to check if an element exists in an array or not
     console.log('\n');
     console.log("-------- INCLUDES Example ------");
@@ -108,7 +113,7 @@
     console.log("-------- lastIndexOf Example ------");
     console.log('\n');
     var array3 = ['Apple', 'Banana', 'Kiwi', 'Apple', 'Strawberry', 'Mango', 'Watermelon'];
-    console.log(array3.lastIndexOf('Banana', 2));
+    console.log(array3.lastIndexOf('Apple'));
 
     // map - Creating a new array by modifying existing data
     // add example for student marks - pass them (make it 35) if marks are between 30 to 34 (including)

@@ -1,0 +1,16 @@
+<script>
+
+    /* Write a function to replace <name> with name passed as arg in function which should return full sentence:
+
+    "My name is <name>"; -----------> "My name is Piyush" */
+
+    function replaceName(name) {
+
+        var str= '"my name is <name>"';
+        var str1 = str.replace(/<name>/i,name)
+        console.log(str1);      
+    
+    }
+    replaceName("piyush")
+
+</script>

@@ -1,0 +1,115 @@
+<script>
+
+    function findCornPlants(num) {
+
+        console.log("number of plant in given km  >> " + num * 1000);
+    }
+    //findCornPlants(25)
+
+    function findAgeToDay(age) {
+        
+        console.log("number of  day you have a born  >> " + age * 365);
+        
+    }
+    // findAgeToDay(7)
+
+    function volatege(i, v) {
+        
+        console.log("calcuate for power >> " + i * v);        
+    }
+    //volatege(20,30)
+
+    function minToMilisec(i) {
+        
+        console.log(i * 60000)
+    }
+    //minToMilisec(10)
+
+    function number(num) {
+        
+        console.log(num + 1);       
+    }
+    //number(2)
+    
+    function divide(num, num1) {
+        
+        console.log(num % num1);        
+    }
+    //divide(20,10)
+
+    
+    function findSum(num, num1) {
+        
+        var flag = false;    
+        if ((num + num1) < 100) {
+
+            flag = true            
+       
+        }
+        console.log(flag);
+    }
+    //findSum(80,50)
+
+    function checkScore(arr, arr1) {
+        
+        var str=0;
+        var str1= 0;
+        for (let i = 0; i < arr.length-1; i++) {
+        str += arr[i]          
+        str1 += arr1[i]
+        }
+
+       if (str > str1) {
+
+            console.log("t1 team is won the match and that score is >> "+str);            
+        }
+        else {
+
+            console.log("t2  team is won the match and that score is >> "+str1)
+        }    
+    } 
+    //checkScore([3, 4, 2],[5, 0 , 2])
+
+    function findLegs(num,num1,num2) {
+        var str= ((num*2)+(num1*4)+(num2*4))
+        console.log("total number of legs in given function >>",str);
+    }
+    //findLegs(5,10,10)
+
+    function reverse() {
+
+        var str = "piyush kachhadiya"
+        var str1 = str.split('')
+        
+        console.log(str1.reverse().join(''));
+    }
+    //reverse()
+
+    function sortSomeValue(str) {
+
+        var str1 = "webmaster"
+        var str2 =  str1.split('')
+        console.log(str2.sort().join(''));
+        
+    }
+    //sortSomeValue()
+
+    function findTheLenght(str) {
+    
+        var array1 = str.match(/[a-z]{1,}/gi);
+        console.log(array1);
+        var result = [];
+
+        for(var x = 1 ; x < array1.length ; x++) {
+
+            if(result.length < array1[x].length) {
+
+                result = array1[x];
+   
+            } 
+        }
+        console.log(result); ;
+    }
+    findTheLenght("Web Development Tutorial")
+
+</script>

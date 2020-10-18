@@ -1,0 +1,36 @@
+<script>
+
+    /* Write a function that checks whether a person can watch an MA15+ rated movie. One of the following two conditions is required for admittance:
+
+    1. The person is at least 15 years old.
+    2. They have parental supervision.
+
+    The function accepts two parameters, age and isSupervised. Return a boolean.
+
+
+    acceptIntoMovie(14, true) ➞ true
+    acceptIntoMovie(14, false) ➞ false
+    acceptIntoMovie(16, false) ➞ true */
+
+    function acceptIntoMovie(age, isSupervised) {
+
+        if (age < 15 && isSupervised == true) {
+            
+                console.log("true");
+            } 
+            else if (age < 15 && isSupervised == false) {
+         
+                console.log("false");
+            } 
+            else if (age > 15 && isSupervised == false) {
+         
+                console.log("true");
+            }
+            else {
+         
+                console.log("that People is not 18+");
+            }
+    }
+    acceptIntoMovie(16, false)
+
+</script>

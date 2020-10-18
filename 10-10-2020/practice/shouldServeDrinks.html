@@ -1,0 +1,39 @@
+<script>
+
+
+/*Can Bartender Serve Drink or not?
+
+A bartender is writing a simple program to determine whether he should serve drinks to someone. He only serves drinks to people 18 and older and + he's not on break.
+
+Given the person's age fn(age), and whether break time is active fn(age, isOnBreak), create a function which returns whether he should serve drinks or not.
+
+Example:
+
+shouldServeDrinks(17, true) ➞ false
+shouldServeDrinks(19, false) ➞ true
+shouldServeDrinks(30, true) ➞ false */
+
+function shouldServeDrinks(age, isOnBreak) {
+        
+        var str ;
+
+        if (isOnBreak > 1 && isOnBreak < 2 ) {
+            str = true
+        } else {
+            str = false
+        }
+
+        if (age >= 18 && str == false) {
+                console.log("true");
+        } else if (age >= 18 && str == true) {
+                console.log("false");
+        } else if (age < 18 && str == true) {
+                console.log("false");
+        } else {
+                console.log("that People is not 18+");
+        }
+}
+
+shouldServeDrinks(30,6)
+    
+</script>
