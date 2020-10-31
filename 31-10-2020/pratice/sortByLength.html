@@ -1,0 +1,17 @@
+<script>
+
+    /* Create a function that returns an array of strings sorted by length in ascending order.
+
+    sortByLength(["a", "ccc", "dddd", "bb"]) ➞ ["a", "bb", "ccc", "dddd"]
+    sortByLength(["apple", "pie", "shortcake"]) ➞ ["pie", "apple", "shortcake"]
+    sortByLength(["may", "april", "september", "august"]) ➞ ["may", "april", "august", "september"] */
+    function sortByLength(arr) {
+
+        var str = [];
+        str = arr.sort(function(a, b) {
+            return a.length - b.length});
+        console.log(str);
+        }
+
+    sortByLength(["may", "april", "september", "august"])
+</script>
