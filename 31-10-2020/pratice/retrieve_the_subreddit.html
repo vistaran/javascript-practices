@@ -1,0 +1,17 @@
+<script>
+
+    /* Create a function to extract the name of the subreddit from its URL.
+    
+    subReddit("https://www.reddit.com/r/funny/") ➞ "funny"
+
+    subReddit("https://www.reddit.com/r/relationships/") ➞ "relationships"
+
+    subReddit("https://www.reddit.com/r/mildlyinteresting/") ➞ "mildlyinteresting" */
+
+    function subReddit(link) {
+        var str = link.match(/[a-z]{1,}/ig)
+        console.log(str);
+        console.log(str[str.length - 1]);
+    }
+    subReddit("https://www.reddit.com/r/funny/")
+</script>
