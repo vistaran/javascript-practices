@@ -1,0 +1,24 @@
+<script>
+
+    /* Write a function that turns a comma-delimited list into an array of strings. 
+    toArray("watermelon, raspberry, orange")
+    ➞ ["watermelon", "raspberry", "orange"]
+
+    toArray("x1, x2, x3, x4, x5")
+    ➞ ["x1", "x2", "x3", "x4", "x5"]
+
+    toArray("a, b, c, d")
+    ➞ ["a", "b", "c", "d"]
+
+    toArray("")
+    ➞ []*/ 
+    
+    function toArray(str) {
+        var str1 = []
+        var  n = str.split(',')
+            for (let i = 0; i < n.length; i++) {
+                str1.push(n[i])
+            }
+    console.log(str1);
+    }
+</script>
