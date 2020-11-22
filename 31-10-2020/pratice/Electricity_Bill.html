@@ -1,0 +1,73 @@
+<script>
+
+    /* Create a function that takes number of units consumed by the customer and returns calculated Electricity Bill as per following conditions:
+  
+    First 100 Units will be charged at $1/unit.
+    Next 100 Units will be charged at $2/unit.
+    Next 100 Units will be charged at $3/unit.
+    Next 200 Units will be charged at $4/unit.
+    Next Units will be charged at $5/unit.
+    10% tax to be added in final amount.
+    Extra $15 to be added for Meter Charge. */
+
+    function electricityBill(units) {
+        var str4 = 0;
+        var str = 0;
+        var str9 = [];
+        for (var i = 0; i <= 5; i++) {
+
+            if (i == 1 && units > 0) {
+                str = units
+                if (str > 100) {
+                    str9.push(100 * 1)
+                } else {
+                    str9.push(str * 1)
+                }
+                str = str - 100;
+                console.log(str);
+            }
+
+            if (i == 2 && str > 0) {
+                if (str > 100) {
+                    str9.push(100 * 2)
+                } else {
+                    str9.push(str * 2)
+                }
+                str = str - 100
+                console.log(str);
+            }
+
+            if (i == 3 && str > 0) {
+                if (str > 100) {
+                    str9.push(100 * 3)
+                } else {
+                    str9.push(str * 3)
+                }
+                str = str - 100
+                console.log(str);
+            }
+
+            if (i == 4 && str > 0) {
+                if (str > 200) {
+                    str9.push(200 * 4)
+                } else {
+                    str9.push(str * 4)
+                }
+                str = str - 200
+            }
+
+            if (i == 5 && str > 0) {
+                str9.push(str * 5)
+            }
+        }
+        var dis = units * 10 / 100;
+
+        for (let i = 0; i < str9.length; i++) {
+
+            str4 += str9[i]
+
+        }
+        console.log("Your Electicity bill is >>" + Math.ceil(str4 + dis + 15));
+    }
+    electricityBill(471.67)
+</script>
