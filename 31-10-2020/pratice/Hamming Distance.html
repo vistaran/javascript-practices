@@ -1,0 +1,23 @@
+<script>
+    /* Hamming distance is the number of characters that differ between two strings.
+    hammingDistance("abcde", "bcdef") ➞ 5
+
+    hammingDistance("abcde", "abcde") ➞ 0
+
+    hammingDistance("strong", "strung") ➞ 1 */
+
+    function hammingDistance(str1, str2) {
+        var str3 = str1.split('')
+        var str4 = str2.split('')
+        var n = 0
+        for (let i = 0; i < str3.length; i++) {
+            console.log(i);
+            if ((str3[i].charCodeAt() - str4[i].charCodeAt()) < 0) {
+                console.log("error");
+                n++;
+            }
+        }
+        console.log(n);
+    }   
+    hammingDistance("abcde", "bcdef")
+</script>
