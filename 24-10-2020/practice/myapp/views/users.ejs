@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+    <table border="1">
+        <tr>
+            <th>e_id</th>
+            <th>emp_name</th>
+            <th>salary</th>
+            <th>join_at</th>
+        </tr>
+        <% for(var i=0; i < employee_list.length; i++) { %>
+          <tr>
+            <td><%= employee_list[i].e_id %></td>
+            <td><%= employee_list[i].emp_name %></td>
+            <td><%= employee_list[i].salary %></td>
+            <td><%= employee_list[i].join %></td>
+          </tr>
+        <% } %>
+    </table>
+</body>
+
+</html>
