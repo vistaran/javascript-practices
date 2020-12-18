@@ -1,0 +1,107 @@
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script  type="text/javascript" src="javascripts/style.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger" style="background-color: brown;">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/dashboard"><i class="fa fa-home" aria-hidden="true" style="font-size: 23;"></i> <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="font-weight: bold;"><%= user.firstname %></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout" style="font-weight: bold"><i class="fa fa-sign-out" aria-hidden="true" style="font-size: 23px;"></i>
+                </a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+
+    <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="project-style">
+                    <h1 style="text-align: center;">Project</h1>
+                    
+                    <button type="button" id="button" data-toggle="modal" data-target="#exampleModal" style="margin-top: 15px;">+New project</button>
+                    <% if(!projects.length) { %>
+                        <p>No Projects yet.</p>
+                    <% } else { %>
+                    <p class="favproject-name">favorites projects</p>
+                    <ul class="ul">
+                        <% projects_projct.forEach ((p) => {%>
+                            <li class="list-style">
+                                <span style="display:block; width:15px; height: 15px; border-radius: 50%; background-color: <%= p.project_color %>; float: left;position: relative;top: 7px;
+                                margin-right: 10px;"></span>
+                                <a href="/project-detail/<%= p.id%>"  name ="select" id="select" class="button" style="color: black;"><p><%= p.project_name %></p></a></li>
+                        <% }) %>
+                    </ul>
+                    <p class="localproject-name" >local projects</p> 
+                    <ul class="ul">
+                        <% projects.forEach ((p) => {%>
+                            <li class="list-style" >
+                                <span style="display:block; width:15px; height: 15px; border-radius: 50%; background-color: <%= p.project_color %>; float: left;position: relative;top: 7px;
+                                margin-right: 10px;"></span>
+                                <a href="/project-detail/<%= p.id%>"  name ="select" id="select" class="button"  style="color: black;"><p><%= p.project_name %></p></a></li>
+                        <% }) %>
+                    </ul>
+                    <% } %>
+                    </div>
+                </div>
+                   <div class="col-md-6">
+                        <!-- <button type="button" id="button1">+add task</button> -->
+                   </div>
+                <div class="col-md-3"></div>         
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form class="form" method="POST" action="/addProject">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">    
+                            <div class="form-group">
+                                <input class="form-control popup-input" id="newtask" name="project_name" placeholder="Enter new project name">
+                            </div>
+
+                            <label class="switch">
+                                <input type="checkbox" name="add_favorites" value="1">
+                                <span class="slider round"></span>
+                              </label>
+                              <br>
+                              Add to favorites
+                              <br>
+                              <br>
+                              <input type="color" name="project_color" style="margin-right: 10px;">Project color
+                                                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
