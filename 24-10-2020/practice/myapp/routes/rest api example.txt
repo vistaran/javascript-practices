@@ -1,0 +1,11 @@
+REST API Example:
+
+/user
+
+GET - /user/ - Lists all users
+POST  - /user/ - Creates a user
+PUT - /user/ - Updates user info
+Delete - /user/4 - Delets user data
+GET - /user/1 - Get user id 1 details
+GET - /user/1/address - Get addresses of a user with id 1
+POST - /user/1/address - Creates a new address of a user with id 1
