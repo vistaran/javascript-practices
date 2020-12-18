@@ -1,0 +1,122 @@
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <style>
+        .error-messages {
+            color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <h2 class="facebook_name">Task Management System</h2>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            
+            <div class="col-md-4 login-form" style="text-align: center; border: 2px solid floralwhite;
+            border-radius: 25px;">
+                <div class="container"> 
+                    <% if(error) { %>
+                        <div class="alert">
+                            Accress Denied.
+                        </div>
+                        <% } %>
+
+                    <% if(success) { %>
+                        <div class="alert">
+                            You are Ragister Now you are login.
+                        </div>
+                        <% } %>
+
+                <form class="form" method="POST" action="/login">
+                    <div class="form-group">
+                        <p class="log_text">Log in to TMS</p>
+                        <input class="form-control input_box" id="email" name="email" placeholder="Email address or phone number" autofocus>
+                        <p id="email-error-messages" class="error-messages" style="text-align: left;"></p>
+                        <br>
+                        <input class="form-control input_box" id="password" name="pass" placeholder="Password" autofocus>
+                        <p id="pass-error-messages" class="error-messages" style="text-align: left;"></p>
+                        <br>
+                        <button type="button" id="submit-btn" class="btn btn-primary" style="font-size: 20px; font-weight: bold;" disabled = 'disabled' onclick="submit()">Log In</button>
+                        <br>
+                        <br>
+                        <a href="#">Forgotten account?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="/signup">Signup for TMS</a>
+                        
+                    </div>
+                </form>
+            </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</body>
+
+<script>    
+    
+    var flags = {
+        isEmailsValid: false,
+        isPasswordValid: false
+    };
+
+    function enableButton() {
+        if (flags.isEmailValid && flags.isPasswordValid) {
+            document.getElementById('submit-btn').removeAttribute('disabled');
+        } else {
+            document.getElementById('submit-btn').setAttribute('disabled', 'disabled');
+        }
+    }
+
+    var element = document.getElementById('email');
+    element.addEventListener('keyup', function(e) {
+
+        if (element.value.length < 10) {
+            document.getElementById('email-error-messages').innerHTML = 'Value can not be less than 10 characters';
+            flags.isEmailValid = false;
+            enableButton();
+            return;
+        }
+
+        document.getElementById('email-error-messages').innerHTML = '';
+        flags.isPasswordValid = true;
+
+        enableButton();
+
+    });
+
+    var element1 = document.getElementById('password');
+    element1.addEventListener('keyup', function(e) {
+
+    if (element1.value.length < 8) {
+        document.getElementById('pass-error-messages').innerHTML = 'Value can not be less than 8 characters';
+        flags.isEmailValid = false;
+        enableButton();
+        return;
+    }
+
+    document.getElementById('pass-error-messages').innerHTML = '';
+    flags.isEmailValid = true;
+
+    enableButton();
+
+    });
+
+    function submit() {
+        document.getElementById('email').innerHTML='';
+        document.getElementById('password').innerHTML='';           
+    }
+
+</script>
+
