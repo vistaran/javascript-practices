@@ -1,0 +1,169 @@
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script  type="text/javascript" src="javascripts/style.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger" style="background-color: brown;">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/dashboard"><i class="fa fa-home" aria-hidden="true" style="font-size: 23;"></i> <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="font-weight: bold;"><%= user.firstname %></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout" style="font-weight: bold"><i class="fa fa-sign-out" aria-hidden="true" style="font-size: 23px;"></i>
+                </a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+
+    <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="project-style">
+                        <h1 style="text-align: center;">Projects</h1>
+                        
+                        <button type="button" class="btn btn-info" id="button" data-toggle="modal" data-target="#exampleModal" style="margin-top: 15px;">+New project</button>
+                        
+                        <!-- Show when no projects -->
+                        <p id="emptyProject" style="margin-top: 20px; display: none;">No Projects yet.</p>
+                        
+                        <p id="fav_projs_name" class="favproject-name" style="display: none;">Favorites Projects</p>
+                        <ul class="ul" id="fav_projs">
+                            
+                        </ul>
+                        <p id="local_projs_name" class="localproject-name" style="display: none;">Projects</p> 
+                        <ul class="ul" id="projects">
+
+                        </ul>
+                    </div>
+                </div>
+                   <div class="col-md-6" id="task_list_section" style="display: none;">
+                        <!-- <button type="button" id="button1">+add task</button> -->
+                        <h2 style="color: black;" id="project_name"></h2>    
+                        <div class="line"></div>
+                        <button type="button" class="btn btn-info" id="button1" data-toggle="modal" data-target="#exampleModal1" style="margin-top: 30px;" >+ Add task</button>
+                        <br>
+                        <br>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="task_list"></tbody>
+                            </table>
+                   </div>
+                <div class="col-md-3" id="show-project-details" style="display: none;">
+                    name : <label id="project-name"></label><br>
+                    Created At:<label id="project-createdat"></label>
+
+                </div>         
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form class="form">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">    
+                            <div class="form-group">
+                                <input class="form-control popup-input" id="newProject" name="project_name" placeholder="Enter new project name">
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id ="add_favorites" value="0">
+                                <span class="slider round"></span>
+                              </label>
+                                <script>
+                                    $('#add_favorites').click(function(){
+                                        $('#add_favorites').attr("value","1");
+                                    });
+                                </script>
+                              <br>
+                              Add to favorites
+                              <br>
+                              <br>
+                              <input type="color" id ="project_color" name="project_color" style="margin-right: 10px;">Project color
+                                                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" id="buttoncheck" onclick="addproject()" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form class="form">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Task</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">    
+                        <div class="form-group">
+                            <input class="form-control popup-input" id="newtask"  placeholder="Enter new task name">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" onclick="addTask()" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModalupdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update projectname</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">    
+                        <div class="form-group">
+                            <input class="form-control popup-input" id="updateName123"  placeholder="Enter new task name">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" onclick="updateName()" class="btn btn-primary">Save changes</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="javascripts/dashboard.js"></script>
+</body>
+</html>
