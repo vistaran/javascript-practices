@@ -1,0 +1,115 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <style>
+        .error-messages {
+            color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Please fill out the form</h2>
+                <form class="form">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input class="form-control" id="name" name="name" placeholder="Enter your name" onkeyup="onInputChange(this)">
+                        <p id="name-error-messages" class="error-messages"></p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>    
+    // Will be used for validation purpose
+    var flags = {
+        isNameValid: false,
+        isEmailValid: false
+    };
+
+    var usersData = [];
+
+
+    // Example using function
+
+    function onInputChange(element) {
+
+        var str = new Date();
+        var time = str.getSeconds()
+        console.log(time);
+
+
+        if (time < 20) {
+            document.getElementById('name-error-messages').innerHTML = time;
+        } else {
+            document.getElementById('name').innerHTML = '';
+        }
+
+        // if (element.value.length < 3) {
+        //     document.getElementById('name-error-messages').innerHTML = 'Value can not be less than 3 characters';
+        //     flags.isNameValid = false;
+        //     enableButton();
+        //     return;
+        // }
+
+        // // all validation passed so clear any existing validation message
+        // document.getElementById('name-error-messages').innerHTML = '';
+        // flags.isNameValid = true;
+
+        // enableButton();
+
+    }
+
+    // Example using event listener
+    // var element = document.getElementById('email');
+
+    // element.addEventListener('keyup', function(e) {
+
+    //     if (element.value.length < 10) {
+    //         document.getElementById('email-error-messages').innerHTML = 'Value can not be less than 10 characters';
+    //         flags.isEmailValid = false;
+    //         enableButton();
+    //         return;
+    //     }
+
+    //     // all validation passed so clear any existing validation message
+    //     document.getElementById('email-error-messages').innerHTML = '';
+    //     flags.isEmailValid = true;
+
+    //     enableButton();
+
+    // });
+
+    // // Submit data and refresh table
+    // function submitData() {
+
+
+    //     // Render table on right side
+    //     renderTable();
+    // }
+
+    // function renderTable() {
+    //     var htmlStr = '<table class="table table-bordered table-striped table-hover">';
+    //     usersData.forEach((u, i) => {
+    //         htmlStr += '<tr>' +
+    //             '<td>' + (i + 1) + '</td>' +
+    //             '<td>' + u.name + '</td>' +
+    //             '<td>' + u.email + '</td>' +
+    //             '</tr>';
+    //     });
+
+    //     htmlStr += '</table>';
+
+    //     document.getElementById('table-data').innerHTML = htmlStr;
+    // }
+</script>
+
+</html>
