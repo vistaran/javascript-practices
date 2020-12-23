@@ -11,6 +11,15 @@ var projectRouter = require('./routes/projects')
 
 var app = express();
 
+//session use
+app.use(session({
+  secret: 'ksnjnrknrgkngngrgnkg',
+  resave: false,
+  saveUninitialized: true,
+  secure: true,
+  cookie: { maxAge: 1000*60*60*8}
+}))
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -21,21 +30,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/projects/',projectRouter);
 
-//session use
-app.use(session({
-  secret: 'ksnjnrknrgkngngrgnkg',
-  resave: true,
-  saveUninitialized: true,
-  cookie: { maxAge: 1000*60*60*8}
-}))
-
-app.use(function(req, res, next) {
-  res.session.user = req.session;
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
