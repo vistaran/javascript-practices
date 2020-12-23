@@ -1,0 +1,164 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <style>
+        .error-messages {
+            color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid signup">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h2 class="facebook_name_signup">Live-Chat</h2>
+              </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+    </div>
+    <div class="container-fluid sign-up">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 signup-form" style="text-align: center;">
+                <div class="container">
+
+                    <% if(email) { %>
+                        <div class="alert">
+                            Your Email id is already registered. You can Direct login now.
+                            <a href="/">Login</a>
+                        </div>
+                        <% } %>
+     
+                <form class="form" method="POST" action="/create_account">
+                    <div class="form-group">
+                        <p class="sign_text">Create a new account</p>
+                        <p class="text">It's quick and easy.</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input class="form-control input_box_signup rect" id="firstname" name="firstname" placeholder="First name" autofocus>
+                                <p id="firstname-error-messages" class="error-messages" style="text-align: left;"></p>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control input_box_signup rect" id="lastname" name="lastname" placeholder="Last name">
+                                <p id="lastname-error-messages" class="error-messages" style="text-align: left;"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="margin-top: 15px;">
+                                <input class="form-control input_box_signup rect" id="email" name="email" placeholder="Email address or phone number" autofocus>
+                                <p id="email-error-messages" class="error-messages" style="text-align: left;"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12" style="margin-top: 15px;">   
+                                <input class="form-control input_box_signup rect" id="pass" name="pass" placeholder="New Password" autofocus>   
+                                <p id="pass-error-messages" class="error-messages" style="text-align: left;"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <button type="button" id="submit-btn" class="btn btn-success" style="font-size: 17px; font-weight: bold;" disabled = 'disabled' onclick="submit()">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    var flags ={
+        isfirstNameVaild : false,
+        islastNameVaild : false,
+        isemailVaild : false,
+        ispassVaild : false, 
+    }
+
+    function enableButton() {
+        if(flags.isfirstNameVaild && flags.islastNameVaild && flags.isemailVaild && flags.ispassVaild) {
+            document.getElementById('submit-btn').removeAttribute('disabled');
+        } else {
+            document.getElementById('submit-btn').setAttribute('disabled', 'disabled');
+        }
+    }
+
+    var element = document.getElementById('firstname');
+    element.addEventListener('keyup',function (e) {
+
+       if (element.value.length < 3) {
+        document.getElementById('firstname-error-messages').innerHTML="value can not less then 3";
+        flags.isfirstNameVaild = false;
+            enableButton();
+            return;
+        } 
+
+        document.getElementById('firstname-error-messages').innerHTML=''
+        flags.isfirstNameVaild = true;
+
+        enableButton()
+    });
+
+    var element1 = document.getElementById('lastname');
+    element1.addEventListener('keyup',function (e) {
+
+       if (element1.value.length < 3) {
+        document.getElementById('lastname-error-messages').innerHTML="value can not less then 3";
+        flags.islastNameVaild = false;
+            enableButton();
+            return;
+        } 
+
+        document.getElementById('lastname-error-messages').innerHTML=''
+        flags.islastNameVaild = true;
+
+        enableButton()
+    });
+
+    var element2 = document.getElementById('email');
+    element2.addEventListener('keyup',function (e) {
+
+       if (element2.value.length < 10) {
+        document.getElementById('email-error-messages').innerHTML="value can not less then 10";
+        flags.isemailVaild = false;
+            enableButton();
+            return;
+        } 
+
+        document.getElementById('email-error-messages').innerHTML=''
+        flags.isemailVaild = true;
+
+        enableButton()
+    });
+
+    var element4 = document.getElementById('pass');
+    element4.addEventListener('keyup',function (e) {
+
+       if (element4.value.length < 8) {
+        document.getElementById('pass-error-messages').innerHTML="value can not less then 8";
+        flags.ispassVaild = false;
+            enableButton();
+            return;
+        } 
+
+        document.getElementById('pass-error-messages').innerHTML=''
+        flags.ispassVaild = true;
+
+        enableButton()
+    });
+
+    function onclick() {
+        Document.getElementById('firstname').innerHTML=''
+        Document.getElementById('lastname').innerHTML=''
+        Document.getElementById('email').innerHTML=''
+        Document.getElementById('pass').innerHTML=''
+    }
+</script>
