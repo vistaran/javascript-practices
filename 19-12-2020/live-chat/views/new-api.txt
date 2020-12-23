@@ -1,0 +1,97 @@
+var express = require('express');
+var router = express.Router();
+var mongoUtil = require('../../database');
+var crypto = require('crypto');
+var body_parser = require('body-parser');
+const { ObjectId } = require('mongodb');
+
+router.post('/',function(req,res){
+    res.render('login')
+})
+
+router.post('/register', function(req, res, next) {
+    var db = mongoUtil.getDb();
+    console.log(db);
+    var email = req.body.email;
+    var userName = req.body.username;
+    var hash = crypto.createHash('sha1');
+    shapass = hash.update('req.body.pass', 'utf-8').digest('hex')
+
+    db.collection("users").insertOne({email: email, name: userName, pass: shapass}).then((result) => {
+        res.send(result);
+    }).catch((error) => {
+        res.status(500).send({error: error.message});
+    });
+  });
+
+router.get('/users', function(req, res, next) {
+    var db = mongoUtil.getDb();
+    
+    // var cursor = db.collection("users").find();
+    // var users = [];
+    // await cursor.forEach((doc) => {
+    //     users.push(doc);
+    // });
+
+    // res.send(users);
+
+    db.collection("users").find().toArray().then((result) => {
+        res.send(result);
+    }).catch((error) => {
+        res.status(500).send({error: error.message});
+    });
+  });
+
+  router.post('/usersUpdate', function(req, res, next) {
+    var db = mongoUtil.getDb();
+    
+    // var cursor = db.collection("users").find();
+    // var users = [];
+    // await cursor.forEach((doc) => {
+    //     users.push(doc);
+    // });
+
+    // res.send(users);
+    db.collection("users").updateOne({_id: ObjectId(req.body.id)}, {$set: {name: req.body.name}}).then((result) => {
+        res.send(result);
+        console.log(result);
+    }).catch((error) => {
+        res.status(500).send({error: error.message});
+    });
+  });
+
+
+//   var updateResult = await db.collection("users").updateOne(where, {$set: {name: req.body.name}})
+router.get('/selectUsers', function(req, res, next) {
+    var db = mongoUtil.getDb();
+    
+    // var cursor = db.collection("users").find();
+    // var users = [];
+    // await cursor.forEach((doc) => {
+    //     users.push(doc);
+    // });
+
+    // res.send(users);
+
+    db.collection("users").find({_id: ObjectId(req.body.id1)}).toArray().then((result) => {
+        res.send(result);
+        console.log(result);
+    }).catch((error) => {
+        res.status(500).send({error: error.message});
+    });
+  });
+
+  router.post('/deleteUsers', function(req, res, next) {
+    var db = mongoUtil.getDb();
+    console.log(req.body.id);
+    
+    db.collection("users").deleteOne({_id: ObjectId(req.body.id)}).then((result) => {
+        res.send(result);
+    }).catch((error) => {
+        res.status(500).send({error: error.message});
+    });
+  });
+
+router.post('/create')
+  
+module.exports = router;
