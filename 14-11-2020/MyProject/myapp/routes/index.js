@@ -36,12 +36,13 @@ router.post('/login', function(req, res, next) {
 })
 
 router.get('/dashboard', function(req, res, next) {
-  if (!user) {
+  if (!req.session.user) {
     res.redirect('/')
+  }else {
+   /// next()
   }
-  console.log(user);
-
-    res.render('dashboard',{'user1' : user});
+  console.log(req.session.user.id);
+  res.render('dashboard',{'user' : req.session.user});
 });
 
 router.post('/create_account',function (req, res) {
@@ -72,10 +73,10 @@ router.post('/create_account',function (req, res) {
 })
 
 router.get('/logout', function(req, res, next) {
-  if (!user) {
+  
+  if (req.session.user) {
     res.redirect('/')
   }
-  console.log(user);
 });
 
 
