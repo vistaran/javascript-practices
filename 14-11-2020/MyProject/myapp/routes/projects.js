@@ -7,14 +7,14 @@ const { route } = require('.');
 
 router.get('/', function (req, res) {
     var projectsSql = 'select * from projects where user_id = ? and favrite_project = "1" ';
-    DB.query(projectsSql, [id], function(err, favorite_projects) { 
+    DB.query(projectsSql, [req.session.user.id], function(err, favorite_projects) { 
         if (err) {
         res.status(500).send(JSON.stringify(err));
         return;
         }
     
         var projectsSql = 'select * from projects where user_id = ? and favrite_project = "0"';
-        DB.query(projectsSql, [id], function(err, projects) { 
+        DB.query(projectsSql, [req.session.user.id], function(err, projects) { 
             if (err) {
                 res.status(500).send(JSON.stringify(err));
                 return;
@@ -75,7 +75,7 @@ router.post('/addnewproject', function(req, res, next) {
     console.log(str,favrite,project_color);
 
     var addproject1 = 'insert into projects(user_id,project_name, project_created_at,favrite_project,project_color) values (?,?,?,?,?)';
-    DB.query(addproject1, [user.id, str, moment().format('YYYY-MM-DD HH:mm:ss'),favrite,project_color], function(err, addProject) { 
+    DB.query(addproject1, [req.session.user.id, str, moment().format('YYYY-MM-DD HH:mm:ss'),favrite,project_color], function(err, addProject) { 
       if (err) {
           res.status(500).send(JSON.stringify(err));
           return;
