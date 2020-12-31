@@ -21,6 +21,9 @@
               <a class="nav-link" href="/dashboard"><i class="fa fa-home" aria-hidden="true" style="font-size: 23;"></i> <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/chat"><i class="fa fa-comments" aria-hidden="true" style="font-size: 23;"></i> <span class="sr-only">Chat</span></a>
+              </li>
+            <li class="nav-item">
               <a class="nav-link" href="#" style="font-weight: bold;"><%= user.name %></a>
             </li>
             <li class="nav-item">
@@ -35,13 +38,13 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="project-style">
-                        <h1 style="text-align: center;">Projects</h1>
+                        <h1 style="text-align: center; margin-top: 30px;">Projects</h1>
                         
                         <button type="button" class="btn btn-info" id="button" data-toggle="modal" data-target="#exampleModal" style="margin-top: 15px;">+New project</button>
                         
                         <!-- Show when no projects -->
                         <p id="emptyProject" style="margin-top: 20px; display: none;">No Projects yet.</p>
-                        
+                        <p id="added_projct" style="margin-top: 20px; font-size: larger;"></p>
                         <p id="fav_projs_name" class="favproject-name" style="display: none;">Favorites Projects</p>
                         <ul class="ul" id="fav_projs">
                             
@@ -54,7 +57,7 @@
                 </div>
                    <div class="col-md-6" id="task_list_section" style="display: none;">
                         <!-- <button type="button" id="button1">+add task</button> -->
-                        <h2 style="color: black;" id="project_name"></h2>    
+                        <h2 style="color: black; margin-top: 35px" id="project_name"></h2>    
                         <div class="line"></div>
                         <button type="button" class="btn btn-info" id="button1" data-toggle="modal" data-target="#exampleModal1" style="margin-top: 30px;" >+ Add task</button>
                         <br>
@@ -71,7 +74,7 @@
                             </table>
                    </div>
                 <div class="col-md-3" id="show-project-details" style="display: none;">
-                    name : <label id="project-name"></label><br>
+                    name : <label id="project-name" style="margin-top: 35px"></label><br>
                     Created At:<label id="project-createdat"></label>
 
                 </div>         
