@@ -3,7 +3,7 @@ var router = express.Router();
 var DB = require('../database');
 var crypto = require('crypto');
 session = require('express-session');
-const { route } = require('.');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -15,10 +15,10 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
-  
+
   var hash = crypto.createHash('sha1');
-  shapass = hash.update('req.body.pass', 'utf-8').digest('hex')
-  console.log(req.body.email,shapass);
+  shapass = hash.update(req.body.pass, 'utf-8').digest('hex');
+  console.log(shapass);
   var projectsSql = 'select * from user where email_id = ? and password = ?';
   DB.query(projectsSql, [req.body.email,shapass], function(err, users) { 
       if (err) {
@@ -46,9 +46,10 @@ router.get('/dashboard', function(req, res, next) {
 });
 
 router.post('/create_account',function (req, res) {
-  
+
   var hash = crypto.createHash('sha1');
-  shapass = hash.update('req.body.pass', 'utf-8').digest('hex')
+  shapass = hash.update(req.body.password, 'utf-8').digest('hex');
+  console.log(shapass);
 
   var selectSql = 'select * from user where email_id = ? ';
   DB.query(selectSql, [req.body.email], function(err, selectUser) { 
