@@ -61,7 +61,7 @@ router.get('/dashboard',function(req, res) {
   if (!req.session.user) {
     res.redirect('/');
   }
-  res.render('live-chat',{'user' : req.session.user})
+  res.render('angular-chat',{'user' : req.session.user})
 });
 
 router.get('/chat',function(req, res) {
