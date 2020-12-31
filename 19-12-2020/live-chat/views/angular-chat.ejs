@@ -1,0 +1,182 @@
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script  type="text/javascript" src="javascripts/style.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styles.css?t=<%= Date.now() %>">
+</head>
+<body ng-app = "myApp">
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger" style="background-color: brown;">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/dashboard"><i class="fa fa-home" aria-hidden="true" style="font-size: 23;"></i> <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/chat"><i class="fa fa-comments" aria-hidden="true" style="font-size: 23;"></i> <span class="sr-only">Chat</span></a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="font-weight: bold;"><%= user.name %></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout" style="font-weight: bold"><i class="fa fa-sign-out" aria-hidden="true" style="font-size: 23px;"></i>
+                </a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid" ng-controller="myCtrlTwo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 leftside">
+                    <div class="col-md-12">
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-md-2">
+                                <span class="dot"></span>
+                            </div>
+                            <div class="col-md-8">
+                                <h4 class="h4">Messanger</h4>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-md-12" style="margin-top: 5px; width: fit-content;">
+                                <input class="form-control input_box" id="name" name="name" placeholder="search" autofocus>
+                            </div>
+                        </div>
+                    </div>  
+                        <div class="col-md-12" ng-repeat="u in users">
+                            <a href="javascript:void(0)" ng-click="selectUser(u._id)" style="color:black">
+                                <div class="row" style="margin-top: 15px;">
+                                    <div class="col-md-2">
+                                        <span class="dot1"></span>
+                                    </div>
+                                    <div class="col-md-10" style="line-height:60%;">
+                                        <p class="name" style="font-size:18px">{{ u.name }} {{ u.lastname ? u.lastname: '' }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="col-md-12">
+                        <div class="row" style="margin-top: 15px;">
+                            <div class="col-md-8" style="line-height:60%;">
+                                <p id="username" style = "margin-top: 48px; font-size: xx-large;"></p>
+                            </div>
+                        </div>
+                        <hr id="hr" style="border-color: black;display: none;">
+                    </div>
+                    <div id="viewmessage" style="text-align: right; height: 600;">
+                        <div ng-repeat = "m in messagedisplay">        
+                            <div ng-if="m.from_user_id === _id">
+                                <div class="sender-message">
+                                    {{ m.message}}
+                                </div>
+                            </div>
+                            <div ng-if="!m.from_user_id === _id">
+                                <div class="sender-message-reciver">
+                                        {{ m.message}}
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row sendMessage">
+                        <div id="sendmessage" style="display: none;">
+                            <form class="form">
+                                <div class = "row">
+                                    <div class="col-md-8" style="width : 718px">
+                                        <div class="form-group ">
+                                            <input type="text" id ="message" class="form-control" placeholder="Type a message..." />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="button" id="button" class="btn btn-success"  onclick="sendmessage('${currentRoom.room_users[1]}')">Send</button>
+                                    </div>
+                                </div>
+                            </form>
+                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+    <script>
+
+        var app = angular.module('myApp', [/* Other angular libraries / modules go here */]);
+
+        app.controller('myCtrlTwo', function ($scope, myFactory) {
+            $scope.currentlySelectedUser = '';
+            $scope.currentRoom;
+            $scope.showmessage;
+            $scope.messagedisplay;
+            $scope.inputValue = '';
+                
+                myFactory.getUsers().then(function (response) {
+                    $scope.users = response.data.result;
+                    console.log($scope.users);
+                }).catch(error => {
+                    alert("Something went wrong.");
+                });
+
+                
+                $scope.selectUser = function (user_id) {
+                    var selectUserID = {
+                        Userid : user_id
+                    }; 
+                    myFactory.selectUsers(selectUserID).then(function(response) {
+                        $scope.currentRoom = response.data.room;
+                        $scope.messagedisplay = response.data.sendMessagesdetails;
+                        console.log($scope.messagedisplay,$scope.currentRoom);
+                        $scope.users.forEach((s) => {
+                            if(s._id === user_id) {
+                                $scope.currentlySelectedUser = s;
+                            }
+                        console.log($scope.currentlySelectedUser); 
+                        $('#hr').fadeIn();
+                        $('#username').html($scope.currentlySelectedUser.name);
+                        $('#username').fadeIn();
+                        $('#sendmessage').fadeIn();
+                         });
+        
+                        }).catch(error => {
+                            response.status(500).send({error:error.message})
+                        })    
+                    };
+
+
+        });
+
+        app.factory('myFactory', function ($http) {
+
+                var f = {};
+                f.getUsers = function () {
+                    return $http.get('/api');
+                };
+
+                f.selectUsers = function (selectUserID) {
+                   return $http.post('/api/createRoomUser', selectUserID);
+                };
+
+                return f;
+            });
+        
+    </script>
+</body>
+</html>
