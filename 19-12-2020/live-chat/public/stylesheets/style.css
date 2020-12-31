@@ -15,7 +15,7 @@ a {
   padding-top: 80px;
   height: 1000px;
   width: 100%;
-}
+} 
 .facebook_name {
   color: dodgerblue;
   font-size: 60px;
@@ -75,3 +75,56 @@ a {
 .rect {        
   line-height: 1.2;        
 }
+
+.leftside {
+  background-color: #f2f2f2;
+}
+.dot {
+  height: 40px;
+  width: 40px;
+  background-image: url(banner.jpg);
+  content: " ";
+  border-radius: 50%;
+  display: inline-block;
+}
+.h4 {
+  text-align: center;
+  margin-top: 5px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bolder;
+}
+.name {
+  font-size: 13px;
+  padding-top: 8px;
+}
+.about {
+  font-size: 13px;
+}
+.dot1 {
+  height: 50px;
+  width: 50px;
+  background-color: black;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot2 {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.sendMessage {
+  /* position:static;
+  margin-top: 600; */
+}
+
+.messageview {
+  text-align: right;
+  border: 5px black solid;
+  height: 500;
+  position: fixed
+}
+
