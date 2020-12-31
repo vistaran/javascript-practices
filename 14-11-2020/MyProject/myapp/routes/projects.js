@@ -3,7 +3,7 @@ var router = express.Router();
 var DB = require('../database');
 var moment = require('moment');
 session = require('express-session');
-const { route } = require('.');
+
 
 router.get('/', function (req, res) {
     var projectsSql = 'select * from projects where user_id = ? and favrite_project = "1" ';
