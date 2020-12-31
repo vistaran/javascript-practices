@@ -2,111 +2,121 @@ var express = require('express');
 var router = express.Router();
 var mongoUtil = require('../database');
 var moment = require('moment');
-var body_parser = require('body-parser');
 const { ObjectId } = require('mongodb');
 
 
+// router.get('/', function(req, res, next) {
+//     var db = mongoUtil.getDb();
+
+//     db.collection("projects").find({user_id: ObjectId(req.session.user._id), favourite: "1"}).toArray().then((favorite_projects) => {
+//         db.collection("projects").find({user_id: ObjectId(req.session.user._id), favourite: "0"}).toArray().then((projects) => {
+            
+//             favorite_projects.forEach((p) => {
+//                 p.project_created_at = moment(p.project_created_at).format('DD/MM/YYYY HH:mm:ss');
+//               })
+             
+//               projects.forEach((p)=> {
+//                 p.project_created_at = moment(p.project_created_at).format('DD/MM/YYYY HH:mm:ss');  
+//               })
+
+//             res.send({
+//                       'favorite_projects' : favorite_projects,
+//                       'projects' : projects,
+//                     });
+//         }).catch((error) => {
+//             res.status(500).send({error: error.message});
+//         });  
+//     }).catch((error) => {
+//         res.status(500).send({error: error.message});
+//     });   
+// });
+
+
+    // var cursor = db.collection("users").find();
+    // var users = [];
+    // await cursor.forEach((doc) => {
+    //     users.push(doc);
+    // });
+
+    // res.send(users);
+
 router.get('/', function(req, res, next) {
     var db = mongoUtil.getDb();
-
-    db.collection("projects").find({user_id: ObjectId(req.session.user._id), favourite: "1"}).toArray().then((favorite_projects) => {
-        db.collection("projects").find({user_id: ObjectId(req.session.user._id), favourite: "0"}).toArray().then((projects) => {
-            
-            favorite_projects.forEach((p) => {
-                p.project_created_at = moment(p.project_created_at).format('DD/MM/YYYY HH:mm:ss');
-              })
-             
-              projects.forEach((p)=> {
-                p.project_created_at = moment(p.project_created_at).format('DD/MM/YYYY HH:mm:ss');  
-              })
-
-            res.send({
-                      'favorite_projects' : favorite_projects,
-                      'projects' : projects
-                    });
-        }).catch((error) => {
-            res.status(500).send({error: error.message});
-        });  
-    }).catch((error) => {
-        res.status(500).send({error: error.message});
-    });   
-  });
-
-router.get('/users', function(req, res, next) {
-    var db = mongoUtil.getDb();
     
-    // var cursor = db.collection("users").find();
-    // var users = [];
-    // await cursor.forEach((doc) => {
-    //     users.push(doc);
-    // });
-
-    // res.send(users);
-
-    db.collection("projects").find().toArray().then((result) => {
-        res.send(result);
+    db.collection("users").find({
+        _id: {
+            $nin: [ObjectId(req.session.user._id)]
+        }
+    }).toArray().then((result) => {
+        res.send({'result':result});
     }).catch((error) => {
         res.status(500).send({error: error.message});
     });
-  });
+});
 
-  router.post('/usersUpdate', function(req, res, next) {
+router.post('/createRoomUser',function(req, res) {
     var db = mongoUtil.getDb();
-    
-    // var cursor = db.collection("users").find();
-    // var users = [];
-    // await cursor.forEach((doc) => {
-    //     users.push(doc);
-    // });
-
-    // res.send(users);
-    db.collection("users").updateOne({_id: ObjectId(req.body.id)}, {$set: {name: req.body.name}}).then((result) => {
-        res.send(result);
-        console.log(result);
+    db.collection("rooms").find({
+        room_users: {
+            $all : [ObjectId(req.body.Userid),ObjectId(req.session.user._id)]
+        }}).toArray().then((selectRoomResult) => {
+            console.log("Found rooms >>> ", ObjectId(selectRoomResult[0]._id));
+            db.collection("messages").find({room_id : ObjectId(selectRoomResult[0]._id)}).toArray().then((sendMessagesdetails) => { 
+                console.log(sendMessagesdetails);
+                if (selectRoomResult.length > 0) {
+                    res.send({'room': selectRoomResult[0],
+                            'sendMessagesdetails': sendMessagesdetails});
+                }else  {
+                    console.log(ObjectId(req.body.Userid));
+                    db.collection("rooms").insertOne({
+                        room_users: [
+                            ObjectId(req.session.user._id), ObjectId(req.body.Userid)
+                        ],
+                        created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
+                        update_at: moment().format('YYYY-MM-DD HH:mm:ss')
+                    }).then((createRoomResult) => {
+                            res.send({'room' : createRoomResult.ops[0]});    
+                    }).catch((error) => {
+                        res.status(500).send({error :error.message})
+                    })
+                }
+            }).catch((error) => {
+                res.status(500).send({error:error.message})
+            })
     }).catch((error) => {
-        res.status(500).send({error: error.message});
-    });
-  });
+        res.status(500).send({error :error.message})
+    })
+})
 
-
-//   var updateResult = await db.collection("users").updateOne(where, {$set: {name: req.body.name}})
-router.get('/selectUsers', function(req, res, next) {
+router.post('/sendMessages',function(req, res) {
     var db = mongoUtil.getDb();
-    
-    // var cursor = db.collection("users").find();
-    // var users = [];
-    // await cursor.forEach((doc) => {
-    //     users.push(doc);
-    // });
-
-    // res.send(users);
-
-    db.collection("users").find({_id: ObjectId(req.body.id1)}).toArray().then((result) => {
-        res.send(result);
-        console.log(result);
+    db.collection("messages").insertOne({
+        message: req.body.message, 
+        room_id: ObjectId(req.body.room_users), 
+        from_user_id: ObjectId(req.body.user_id),
+        created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
+        update_at: moment().format('YYYY-MM-DD HH:mm:ss')}).then((sendMessagesdetails) => {
+            res.send({'sendMessagesdetails': sendMessagesdetails})
     }).catch((error) => {
-        res.status(500).send({error: error.message});
-    });
-  });
-
-  router.post('/deleteUsers', function(req, res, next) {
-    var db = mongoUtil.getDb();
-    console.log(req.body.id);
-    
-    db.collection("users").deleteOne({_id: ObjectId(req.body.id)}).then((result) => {
-        res.send(result);
-    }).catch((error) => {
-        res.status(500).send({error: error.message});
-    });
-  });
+        res.status(500).send({error: error.message})
+    })
+})
 
 router.post('/addnewproject',function(req, res) {
     var db = mongoUtil.getDb();
-
-    db.collection("projects").insertOne({user_id: ObjectId(req.session.user._id), project_name: req.body.project_name, favourite: req.body.fav, project_color : req.body.color, created_at: moment().format('YYYY-MM-DD HH:mm:ss')}).then((insertProjects) => {
-        res.send(insertProjects);
+    db.collection("projects").find({user_id: ObjectId(req.session.user._id),project_name: req.body.project_name}).toArray().then((selectProject) => {
+        console.log(selectProject);
+        if (selectProject.length > 0) {
+            res.send({'selectProject' : selectProject})            
+        }else {
+            db.collection("projects").insertOne({user_id: ObjectId(req.session.user._id), project_name: req.body.project_name, favourite: req.body.fav, project_color : req.body.color, created_at: moment().format('YYYY-MM-DD HH:mm:ss')}).then((insertProjects) => {
+                res.send(insertProjects);
+            }).catch((error) => {
+                res.status(500).send({error: error.message});
+            });
+        }
     }).catch((error) => {
-        res.status(500).send({error: error.message});
+        res.status(500).send({error:error.message})
     });
 });
 
