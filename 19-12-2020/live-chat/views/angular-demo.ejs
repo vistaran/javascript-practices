@@ -1,0 +1,74 @@
+<html>
+    <body ng-app="myApp">
+        <div ng-controller="myCtrl">
+            Add User
+            <input type="text" ng-model="inputValue">
+            <button ng-click="addUser()">Add User</button>
+        </div>
+
+        <div ng-controller="myCtrlTwo">
+            User List
+
+            <ul>
+                <li ng-repeat="u in users">
+                    {{ u.name }} <span style="cursor: pointer;" ng-click="deleteUser(u, u.name, $index)">X</span>
+                </li>
+            </ul>
+        </div>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+        <script>
+            
+            /** Angular Module declaration */
+            var app = angular.module('myApp', [/* Other angular libraries / modules go here */]);
+
+            /** SECTION 1 Handler */
+            app.controller('myCtrl', function ($scope, myFactory) {
+                $scope.inputValue = '';
+
+                $scope.addUser = function () {
+                    myFactory.addUser({
+                        user_name: $scope.inputValue
+                    });
+                    $scope.inputValue = '';
+                };
+            });
+
+            /** SECTION 2 Handler */
+            app.controller('myCtrlTwo', function ($scope, myFactory) {
+                $scope.inputValue = '';
+                
+                myFactory.getUsers().then(function (response) {
+                    $scope.users = response.data.result;
+                }).catch(error => {
+                    alert("Something went wrong.");
+                });
+
+                
+
+                $scope.deleteUser = function (a, b, c) {
+                    console.log(a, b, c);
+                    // $scope.users.splice(idx, 1);
+                };           
+
+            });
+
+            app.factory('myFactory', function ($http) {
+
+                var f = {};
+
+                f.getUsers = function () {
+                    return $http.get('/api');
+                };
+
+                f.addUser = function (user) {
+                   return $http.post('/api/addUser', user);
+                };
+
+                return f;
+            });
+        
+        </script>
+    </body>
+
+</html>
