@@ -1,0 +1,87 @@
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script  type="text/javascript" src="javascripts/style.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styles.css?t=<%= Date.now() %>">
+</head>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger" style="background-color: brown;">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/dashboard"><i class="fa fa-home" aria-hidden="true" style="font-size: 23;"></i> <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/chat"><i class="fa fa-comments" aria-hidden="true" style="font-size: 23;"></i> <span class="sr-only">Chat</span></a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="font-weight: bold;"><%= user.name %></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout" style="font-weight: bold"><i class="fa fa-sign-out" aria-hidden="true" style="font-size: 23px;"></i>
+                </a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 leftside">
+                    <div class="col-md-12">
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-md-2">
+                                <span class="dot"></span>
+                            </div>
+                            <div class="col-md-8">
+                                <h4 class="h4">Messanger</h4>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-md-12" style="margin-top: 5px; width: fit-content;">
+                                <input class="form-control input_box" id="name" name="name" placeholder="search" autofocus>
+                            </div>
+                        </div>
+                    </div>
+                        <div id="listofuser"></div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="col-md-12">
+                        <div class="row" style="margin-top: 15px;">
+                            <div class="col-md-8" style="line-height:60%;">
+                                <p id="username" style = "margin-top: 48px; font-size: xx-large;"></p>
+                            </div>
+                        </div>
+                        <hr id="hr" style="border-color: black;display: none;">
+                    </div>
+                    <div id="viewmessage" style="text-align: right; height: 600;"></div>
+                    <div class="row sendMessage">
+                        <div id="sendmessage" style="display: none;">
+                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+    <script src="javascripts/dashboard.js"></script>
+</body>
