@@ -82,16 +82,16 @@
                         </div>
                         <hr id="hr" style="border-color: black;display: none;">
                     </div>
-                    <div id="viewmessage" style="text-align: right; height: 600;">
-                        <div ng-repeat = "m in messagedisplay">        
-                            <div ng-if="m.from_user_id === _id">
+                    <div id="viewmessage" style="text-align: right; height: 600;overflow: auto;">
+                        <div ng-repeat="m in messagedisplay">  
+                            <div ng-if="m.from_user_id == currentlySelectedUser._id">
                                 <div class="sender-message">
-                                    {{ m.message}}
+                                    {{ m.message}} {{m.created_at}}
                                 </div>
                             </div>
-                            <div ng-if="!m.from_user_id === _id">
+                            <div ng-if="m.from_user_id != currentlySelectedUser._id">
                                 <div class="sender-message-reciver">
-                                        {{ m.message}}
+                                        {{ m.message}}{{m.created_at}}
                                     </div>
                                 </div>
                         </div>
@@ -99,18 +99,17 @@
                     <div class="row sendMessage">
                         <div id="sendmessage" style="display: none;">
                             <form class="form">
-                                <div class = "row">
-                                    <div class="col-md-8" style="width : 718px">
+                                <div class = "row" style="margin-top: 30px; margin-left: 10px;">
+                                    <div class="col-md-8" style="width : 718px;">
                                         <div class="form-group ">
                                             <input type="text" id ="message" class="form-control" placeholder="Type a message..." />
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <button type="button" id="button" class="btn btn-success"  onclick="sendmessage('${currentRoom.room_users[1]}')">Send</button>
+                                        <button type="button" id="button" class="btn btn-success"  ng-click="sendmessages()">Send</button>
                                     </div>
                                 </div>
                             </form>
-                               
                         </div>
                     </div>
                 </div>
@@ -148,19 +147,29 @@
                             if(s._id === user_id) {
                                 $scope.currentlySelectedUser = s;
                             }
-                        console.log($scope.currentlySelectedUser); 
+                         });
+                         console.log($scope.currentlySelectedUser); 
                         $('#hr').fadeIn();
                         $('#username').html($scope.currentlySelectedUser.name);
                         $('#username').fadeIn();
                         $('#sendmessage').fadeIn();
-                         });
-        
                         }).catch(error => {
                             response.status(500).send({error:error.message})
                         })    
                     };
 
-
+                    $scope.sendmessages = function(){
+                        var messagedetails = {
+                                message: $('#message').val(),
+                                room_users: $scope.currentRoom._id,
+                                user_id: $scope.currentlySelectedUser._id
+                            };
+                        myFactory.sendmessage(messagedetails).then(function(response) {
+                            document.getElementById('message').value = '';
+                        }).catch(error => {
+                            response.status(500).send({error:error.message})
+                        })    
+                    }
         });
 
         app.factory('myFactory', function ($http) {
@@ -174,6 +183,9 @@
                    return $http.post('/api/createRoomUser', selectUserID);
                 };
 
+                f.sendmessage = function (messagedetails) {
+                    return $http.post('/api/sendMessages',messagedetails)
+                }   
                 return f;
             });
         
