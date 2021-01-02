@@ -137,7 +137,6 @@ body,div,input {
 .dot {
   height: 40px;
   width: 40px;
-  background-image: url(banner.jpg);
   content: " ";
   border-radius: 50%;
   display: inline-block;
