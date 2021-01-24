@@ -1,0 +1,12 @@
+h2 {
+    color: coral
+}
+
+.font-xl {
+    font-size: 40px;
+}
+
+.primary {
+    background-color: wheat;
+    padding: 1rem;
+}
