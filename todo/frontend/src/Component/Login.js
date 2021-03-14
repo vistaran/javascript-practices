@@ -21,9 +21,10 @@ class Login extends Component {
                 username : document.getElementById('email').value,
                 password : document.getElementById('password').value
         }).then(response => {
-            console.log(response)
+            console.log(response.data[0].id)
             if(response.data.length > 0) {
-                window.location.href = '/dashboard';
+                localStorage.setItem('user',JSON.stringify(response.data))
+                window.location.href = '/dashboard/'+response.data[0].id;
 
             }
         }) .catch(function (error) {
