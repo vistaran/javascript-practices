@@ -9,3 +9,9 @@
 9. Refs, refs with class components and forwardRef
 10. Portals
 11. Render Props
+12. useState Hook
+13. useEffect
+    - Call everytime
+    - Call one
+    - Conditional call
+
