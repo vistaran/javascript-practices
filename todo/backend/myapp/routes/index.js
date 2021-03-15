@@ -142,4 +142,17 @@ router.post('/add_Task', function(req, res, next) {
   });
 });
 
+router.post('/task-delete', function(req, res, next) {
+  var deletetask = 'delete from task where project_id = ? and task_name = ?';
+  DB.query(deletetask, [req.body.pro_id,req.body.taskName], function(err, deletetask) { 
+    if (err) {
+        res.status(500).send(JSON.stringify(err));
+        return;
+    
+      }
+      console.log(deletetask);
+    res.send(deletetask);  
+  });
+});
+
 module.exports = router;
