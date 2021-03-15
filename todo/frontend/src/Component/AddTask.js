@@ -4,21 +4,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 const axios = require('axios');
 
 function AddTask(props) {
-    const [task_details ,setTaskDetails] = useState([])
-
-    useEffect(() => {
-        axios.post('/tasks', { 
-                project_id: props.projectInfo.id 
-          })
-          .then(function (response) {
-            console.log(response.data.task_details)
-            setTaskDetails(response.data.task_details);
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
-    },[]);
-
+    console.log(props.task_detail)
     function saveTask() {
         axios.post('/add_Task', {
             pro_id: props.projectInfo.id,
@@ -26,17 +12,31 @@ function AddTask(props) {
         })
         .then(function (response) {
           $('#exampleModal').modal('hide')
-          window.location.reload()
         })
         .catch(function (error) {
           console.log(error);
         })        
     }
+
+    function deleteProject(row) {
+        console.log(row.project_id)
+        axios.post('/task-delete', {
+            pro_id: row.project_id,
+            taskName: row.task_name
+        })
+        .then(function (response) {
+        //   window.location.reload()
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    }
     return (
         <div>
+            <div>
              <h2 style={{color:'black',textAlign:'left'}}>{props.projectInfo.project_name}</h2>    
                     <div className="line"></div>
-                    <button type="button" className="btn btn-info"  id="button1" data-toggle="modal" data-target="#exampleModal" style={{marginTop:'30px',textAlign:'left'}}>+ Add task</button>
+                    <button type="button" className="btn btn-info"  id="button1" data-toggle="modal" data-target="#exampleModal3" style={{marginTop:'30px',textAlign:'left'}}>+ Add task</button>
                         <br></br>
                         <br></br>
                             <table className="table table-bordered table-striped">
@@ -48,16 +48,17 @@ function AddTask(props) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                            {task_details.map((obj,index) => {
-                                    <tr>   
-                                        <td>{obj.task_name}</td> 
-                                        <td>{obj.created_at}</td>
-                                        <td><DeleteIcon /></td>
-                                    </tr>
-                                })}
+                            {props.task_detail.map((obj,index) => 
+                                <tr key={index}>   
+                                    <td>{obj.task_name}</td> 
+                                    <td>{obj.created_at}</td>
+                                    <td onClick={(e) => deleteProject(obj)}><DeleteIcon /></td>
+                                </tr>
+                            )} 
                             </tbody>
                     </table>
-        <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    </div>
+        <div className="modal fade" id="exampleModal3" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <form className="form" method="POST" action="/addTask">
