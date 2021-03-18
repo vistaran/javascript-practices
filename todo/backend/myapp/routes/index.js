@@ -32,8 +32,20 @@ router.post('/login', cors(corsOptions) ,function(req, res, next) {
       res.status(500).send(JSON.stringify(err));
       return;
       }
-      console.log(users)
       res.send(users)
+    });
+});
+
+router.post('/userdetails' ,function(req, res, next) {
+  console.log(req.body.User_id)
+  var userSql = 'select * from user where id = ?';
+  DB.query(userSql, [req.body.User_id], function(err, usersDetail) { 
+      if (err) {
+      res.status(500).send(JSON.stringify(err));
+      return;
+      }
+      console.log(usersDetail)
+      res.send(usersDetail)
     });
 });
 
@@ -154,5 +166,33 @@ router.post('/task-delete', function(req, res, next) {
     res.send(deletetask);  
   });
 });
+
+router.post('/create_account',function (req, res) {
+
+  var hash = crypto.createHash('sha1');
+  shapass = hash.update(req.body.password, 'utf-8').digest('hex');
+  console.log(shapass);
+
+  var selectSql = 'select * from user where email_id = ? ';
+  DB.query(selectSql, [req.body.email], function(err, selectUser) { 
+      if (err) {
+      res.status(500).send(JSON.stringify(err));
+      return;
+      }
+      if (selectUser.length > 0) {
+        res.send("email")
+      }else {
+        var insertSql = 'insert into user (firstname,lastname,email_id,password) value (?,?,?,?)';
+        DB.query(insertSql, [req.body.firstname,req.body.lastname,req.body.email,shapass], function(err, insert_record) { 
+            if (err) {
+            res.status(500).send(JSON.stringify(err));
+            return;
+            }
+            console.log(insert_record);
+        res.send("success")
+      })
+    }
+  })
+})
 
 module.exports = router;
