@@ -7,17 +7,19 @@ import {BrowserRouter as Router,
 } from "react-router-dom";
 import Login from './Component/Login';
 import Dashboard from './Component/Dashboard';
+import Signup from './Component/Signup';
+import RedirectSignup from './Component/RedirectSignup';
+
 function App() {
   return (
-    // <div className="App">
-    //   <header className="App-header">
       <Router>
         <Switch>
           <Route path="/" exact component={Login} />
-          <Route path="/dashboard/:id" exact component={Dashboard}/>    
+          <Route path="/dashboard" exact component={Dashboard}/>
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/:id" exact component={RedirectSignup} />    
         </Switch>
     </Router>
-
   );
 }
 
