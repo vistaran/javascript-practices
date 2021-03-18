@@ -4,14 +4,25 @@ import DeleteIcon from '@material-ui/icons/Delete';
 const axios = require('axios');
 
 function AddTask(props) {
-    console.log(props.task_detail)
+    function update_task() {
+        axios.post('/tasks', { 
+            project_id: props.projectInfo.id 
+        })
+        .then(function (response) {
+           
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    }
     function saveTask() {
         axios.post('/add_Task', {
             pro_id: props.projectInfo.id,
             task_name: document.getElementById('newtask').value,
         })
         .then(function (response) {
-          $('#exampleModal').modal('hide')
+          $('#exampleModal3').modal('hide')
+          update_task()
         })
         .catch(function (error) {
           console.log(error);
@@ -25,7 +36,7 @@ function AddTask(props) {
             taskName: row.task_name
         })
         .then(function (response) {
-        //   window.location.reload()
+          update_task   ()
         })
         .catch(function (error) {
           console.log(error);
