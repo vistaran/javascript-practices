@@ -11,7 +11,7 @@ body,div,input {
   .container-fluid {
     background-color: #f2f2f2;
     text-align: center;
-    padding-top: 80px;
+    /* padding-top: 80px; */
     height: 1000px;
     width: 100%;
   }
