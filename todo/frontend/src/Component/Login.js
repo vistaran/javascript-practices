@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import Dashboard from './Dashboard';
 import './style.css';
 import { Redirect } from "react-router";
@@ -6,15 +8,22 @@ import  { NavLink  } from 'react-router-dom'
 // import { Button } from 'bootstrap';
 const axios = require('axios');
 
-class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            LoginSuccess: false
+function Login() {
+    let history = useHistory();
+    var users = false ;
+    var user = JSON.parse(localStorage.getItem('user')) ?JSON.parse(localStorage.getItem('user')) : ''
+    useEffect(() => {
+        if(user.length > 0) {
+            history.push('/dashboard')
+        }else {
+            history.push('/')
         }
+    },[]);
+    
+    function signup(){
+        history.push('/signup')
     }
-
-    submit = () => {
+    function submit(){
         var str =document.getElementById('email').value
         console.log(str)
         axios.post('/login',{
@@ -23,15 +32,14 @@ class Login extends Component {
         }).then(response => {
             console.log(response.data[0].id)
             if(response.data.length > 0) {
+                console.log(response.data[0].id)
                 localStorage.setItem('user',JSON.stringify(response.data))
-                window.location.href = '/dashboard/'+response.data[0].id;
-
+                history.push('/dashboard');
             }
         }) .catch(function (error) {
             console.log(error);
           })
     }
-    render()  {
         return (     
             <div className="container-fluid">
                 <div className="row">
@@ -50,17 +58,16 @@ class Login extends Component {
                                 <input className="form-control input_box" id="password" name="pass" placeholder="Password" autoFocus />
                                 <br></br>
 
-                                <button type="button" id="submit-btn" className="btn btn-primary" style={{fontSize: "20px", fontWeight: "bold"}} onClick={this.submit}>Log In</button>
+                                <button type="button" id="submit-btn" className="btn btn-primary" style={{fontSize: "20px", fontWeight: "bold"}} onClick={submit}>Log In</button>
                                 <br></br>
                                 <br></br>
-                                    {/* <a href="#">Forgotten account?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="/signup">Signup for TMS</a> */}
+                                    <a href="#">Forgotten account?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a onClick={signup}>Signup for TMS</a>
                             </div>
                     <div className="col-md-4"></div>
                 </div>
             </div>
         );
-    }
 }
 
 
