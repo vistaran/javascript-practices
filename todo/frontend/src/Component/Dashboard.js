@@ -7,33 +7,45 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ProjectInfo from './ProjectInfo';
 import AddTask from './AddTask';
+import NavBar from './NavBar';
+import { useHistory } from "react-router-dom";
 const axios = require('axios');
 
 
 function Dashboard() {
     let { id } = useParams();
-    const [user_id, setId] = useState(id)
+    // const [user_id, setId] = useState(id)
     const [task_details ,setTaskDetails] = useState([])
+    let history = useHistory();
     const [projectdetails, setProjectDetails] = useState()
     const [isNoData,setIsNoData] = useState(false);
     const [favProject, setFavProject] = useState([]);
     const [project, setProject] = useState([]);
     const [addToFavPro,setAddToFavPro] = useState(0);
     
+    var user = JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : "";
+    var user_id = user ? user[0].id : '';
+
     useEffect(() => {
-        axios.post('/getProject', { 
-                user_id: user_id 
-          })
-          .then(function (response) {
-            console.log(response.data.favorite_projects,response.data.projects)
-            setFavProject(response.data.favorite_projects);
-            setProject(response.data.projects);
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
+        if(user.length <= 0) {
+            history.push('/')
+        }
+        getproject();
     },[favProject.length,project.length]);
 
+    function getproject() {
+        axios.post('/getProject', { 
+            user_id: user_id 
+      })
+      .then(function (response) {
+        console.log(response.data.favorite_projects,response.data.projects)
+        setFavProject(response.data.favorite_projects);
+        setProject(response.data.projects);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+    }
     
      function favorites () {
             if($('#add_favorites').prop("checked") == true){
@@ -42,18 +54,20 @@ function Dashboard() {
      }
 
      function Addproject() {
-            axios.post('/addnewproject', {
-                    user_id: user_id,
-                    project_name: document.getElementById('newProject').value,
-                    add_favorites: addToFavPro,
-                    project_color: document.getElementById('project_color').value
-                })
-                .then(function (response) {
-                    $('#exampleModal').modal('hide')
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
+        axios.post('/addnewproject', {
+                user_id: user_id,
+                project_name: document.getElementById('newProject').value,
+                add_favorites: addToFavPro,
+                project_color: document.getElementById('project_color').value
+            })
+            .then(function (response) {
+                $('#exampleModal').modal('hide')
+                getproject()
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
          }
 
     function deleteProject(row) {
@@ -104,6 +118,7 @@ function Dashboard() {
 
     return (
         <>
+            <NavBar />
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-3">
@@ -154,7 +169,7 @@ function Dashboard() {
                             </div>
                         </div>
                        { isNoData && <div className="col-md-6">
-                            <AddTask projectInfo={projectdetails} task_detail={task_details}/>
+                            <AddTask projectInfo={projectdetails} task_detail={task_details} />
                         </div>}
 
                         { isNoData && <div className="col-md-3">
