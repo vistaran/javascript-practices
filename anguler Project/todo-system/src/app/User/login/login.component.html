@@ -1,0 +1,54 @@
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"> -->
+    <style>
+        .error-messages {
+            color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <h2 class="facebook_name">Task Management System</h2>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            
+            <div class="col-md-4 login-form" style="text-align: center; border: 2px solid floralwhite;
+            border-radius: 25px;">
+                <div class="container"> 
+                <form (submit)="onSubmit()" type="post">
+                    <div class="form-group">
+                        <p class="log_text">Log in to TMS</p>
+                        <input class="form-control input_box" [(ngModel)]="email" name="email" placeholder="Email address or phone number">
+                        <p id="email-error-messages" class="error-messages" style="text-align: left;"></p>
+                        <br>
+                        <input class="form-control input_box" [(ngModel)]="password" name="pass" placeholder="Password">
+                        <p id="pass-error-messages" class="error-messages" style="text-align: left;"></p>
+                        <br>
+                        <button type="submit" id="submit-btn" class="btn btn-primary" style="font-size: 20px; font-weight: bold;">Log In</button>
+                        <br>
+                        <br>
+                        <a href="#">Forgotten account?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a routerLink="/signup" routerLinkActive="active">Signup for TMS</a>
+                        
+                    </div>
+                </form>
+            </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</body>
+</html>
