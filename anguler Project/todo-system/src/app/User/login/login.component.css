@@ -1,0 +1,77 @@
+body,div,input {
+    font-family: 'Montserrat', sans-serif;
+  }
+  a {
+    color: #00B7FF;
+  }
+  
+  .login-form {
+    align-content: center; 
+    background-color: rgb(255, 255, 255);
+  }
+  .container-fluid {
+    background-color: #f2f2f2;
+    text-align: center;
+    padding-top: 80px;
+    height: 1000px;
+    width: 100%;
+  }
+  .facebook_name {
+    color: dodgerblue;
+    font-size: 60px;
+    font-weight: bold;
+    word-wrap: none;
+  }
+  .log_text {
+    padding-top: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+  }
+  .input_box {
+    padding: 25px 25px 25px 15px;
+  }
+  .form-control {
+    border-radius: 20 20 20 20px;
+  }
+  .btn {
+    padding: 13 160 13 160px;
+  }
+  .facebook_name_signup {
+    font-family: 'Times New Roman', Times, serif;
+    color: floralwhite;
+    font-size: 60px;
+    font-weight: bold;
+    word-wrap: none;
+  }
+  .signup {
+    text-align: center;
+    padding-top: 10px;
+    background-color: #3b5998;
+    height: 100px;    
+  }
+  .signup-form {
+    align-content: center; 
+  }
+  .sign_text {
+    font-size: 30px;
+    text-align: left;
+    font-weight: bold;
+  }
+  .sign-up {
+    background-color: #f2f2f2;
+    text-align: center;
+    padding-top: 10px;
+    height: 700px;
+  }
+  .text {
+    color: black;
+    text-align: left;
+    font-size: 20px;
+    padding-top: auto;
+  }
+  .input_box_signup {
+    padding: 10px 10px 10px 10px;   
+  }
+  .rect {        
+    line-height: 1.2;        
+  }
